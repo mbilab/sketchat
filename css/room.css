@@ -1,19 +1,10 @@
-.paper {
-  background-color: #DDD;
-  margin: 0;
-  margin-top: -20px;
+#video-conference {
+  top: 56px;
+  background-color: #999;
 }
-.drawing_board {
-  position: absolute;
-  top: 52px;
-  left: 30px;;
-  background-color: #CCC;
-  margin: 0;
+#sketch-board {
+  background: url('../node-drawing-game/assets/img/bg.png') repeat #e4e4e4;
+  width: 100%;
 }
-.left-side-bar {
-  position: absolute;
-  top: 52px;
-  left: 0;
-  background-color: #AAA;
-  margin: 0;
-}
+
+
