@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html>
+<!-- saved from url=(0050)http://getbootstrap.com/examples/starter-template/ -->
+<html lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
@@ -51,7 +52,7 @@
 		<h2>Enter the chatroom</h2>
 		<p>Enter the chatroom name and Sketchat friends.</p>
 		  <div class="col-md-6 col-md-offset-3">
-		    <!--form action="./enter_room.php" method="get"!-->
+		    <!--form action="./enter_room.php" method="get"-->
 		      <input type="text" id="enter-name" class="form-control sign-form" name="enter-name" placeholder="Name" />
 		      <input type="text" id="enter-room" class="form-control sign-form" name="enter-room" placeholder="Chat Room Name" />
 		      <button id="enter-button" class="btn btn-lg btn-primary btn-embossed sign-button">Enter</button>
@@ -91,13 +92,11 @@
     <script src="./js/jquery.min.js"></script>
     <script src="./js/jquery.scrollto.min.js"></script>
     <script src="./js/bootstrap.min.js"></script>
-    <script src="http://crypto-js.googlecode.com/svn/tags/3.0.2/build/rollups/md5.js"></script>
     <script>
       (function ($) {
 	$("#enter-button").on("click", function() {
 	  var room = document.getElementById("enter-room").value;
-          var roomhash = CryptoJS.MD5(room).toString();
-	  location.href = "./chatroom_demo.html?" + roomhash;
+	  location.href = "./chatroom.html?" + room;
 	});
       }(jQuery));
     </script>

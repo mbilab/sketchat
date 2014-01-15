@@ -117,7 +117,7 @@ $(function(){
 			}
 		}
 		
-	},1);
+	},10000);
 
 	function drawLine(fromx, fromy, tox, toy){
 		ctx.moveTo(fromx, fromy);
