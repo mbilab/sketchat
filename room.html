@@ -37,7 +37,7 @@
 	<!-- Collect the nav links, forms, and other content for toggling -->
 	<div >
 	  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-	    <button id="clear" class="btn btn-success" style="margin-top: 10px;">Hide the video</button>
+	    <div id='clear'>Clear</div>
 	    <ul class="nav navbar-nav navbar-right">
 	      <li><a href="" data-loc="home" class="menu-list"></a></li>
 	    
@@ -58,7 +58,7 @@
 	<h2>You will see everyone else who's doing the same.</h2>
 	<h3>Tip: if the stage gets dirty, simply reload the page</h3>
     </hgroup>
-    <!--section id="video-gallery" style='height: 400px; overflow: scroll;'>
+    <section id="video-gallery" style='height: 400px; overflow: scroll;'>
     <section>
       <div class="gridster ready">
 	<ul id="remotes">
@@ -66,7 +66,7 @@
 	</ul>
       </div>
     </section>
-    </section-->
+    </section>
     <!--footer>
     <div class="container">
       <div class="text-centered">
@@ -111,21 +111,19 @@ $('#clear').on('click', function(){
     
     if($('#video-gallery').css('top') == (screen.height - 400)+'px'){
     	$('#video-gallery').animate({top: screen.height+'px'});
-    	$('#clear').html("Show video");
     }else{
 	$('#video-gallery').animate({top: (screen.height - 400)+'px'})		
-    	$('#clear').html("Hide video");
     }
-/*
+
     var canvas = $('canvas')[0];
     var ctx = canvas.getContext('2d');
     /*canvas.width  = window.innerWidth;
     canvas.height  = window.innerHeight;
-    console.log(canvas.width+' '+canvas.height);
+    console.log(canvas.width+' '+canvas.height);*/
     ctx.setTransform(1, 0, 0, 1, 0, 0);
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.restore();
-*/
+
     });
 
   </script>

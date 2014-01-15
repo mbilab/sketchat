@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0050)http://getbootstrap.com/examples/starter-template/ -->
-<html lang="en">
+<html>
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
@@ -14,158 +13,159 @@
     <!-- Bootstrap core CSS -->
     <link href="./css/bootstrap.css" rel="stylesheet">
     <link href="./css/style.css" rel="stylesheet">
-
+    <link href="./css/index.css" rel="stylesheet">
   </head>
 
-  <body style="">
+  <body>
+
     <div id="header">
       <nav id="navbar" class="navbar navbar-default" role="navigation">
-	<!-- Brand and toggle get grouped for better mobile display -->
-	<div class="navbar-header">
-	  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-	    <span class="sr-only">Toggle navigation</span>
-	    <span class="icon-bar"></span>
-	    <span class="icon-bar"></span>
-	    <span class="icon-bar"></span>
-	  </button>
-	  <a class="navbar-brand" href="./" style="font-size: 30px; padding-left: 0px; letter-spacing:1px;">Sketchat</a>
+	<div class="container">
+	  <!-- Brand and toggle get grouped for better mobile display -->
+	  <div class="navbar-header">
+	    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+	      <span class="sr-only">Toggle navigation</span>
+	      <span class="icon-bar"></span>
+	      <span class="icon-bar"></span>
+	      <span class="icon-bar"></span>
+	    </button>
+	    <a class="navbar-brand" href="./" style="font-size: 30px; padding-left: 0px; letter-spacing:1px;">Sketchat</a>
+	  </div>
+	  <!-- Collect the nav links, forms, and other content for toggling -->
+	  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	    <ul class="nav navbar-nav navbar-right">
+	      <li><a href="./about.html" data-loc="about" class="menu-list">About</a></li>
+	      <li><a href="./feature.html" data-loc="feature" class="menu-list">Feature</a></li>
+	    </ul>
+	  </div><!-- /.navbar-collapse -->
 	</div>
-	<!-- Collect the nav links, forms, and other content for toggling -->
-	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-	  <ul class="nav navbar-nav navbar-right">
-	    <li><a href="#home" data-loc="home" class="menu-list">Home</a></li>
-	    <li><a href="#about" data-loc="about" class="menu-list">About</a></li>
-	    <li><a href="#team" data-loc="team" class="menu-list">Team</a></li>
-	  </ul>
-	</div><!-- /.navbar-collapse -->
       </nav>
     </div>
 
-    <div class="container">
+    <section class="scroll-panel" id="cover">
+      <div class="container">
 
-      <section class="scroll-panel" id="home">
-	<div class="jumbotron jumbotron-midnight text-centered">
-	  <h1 style="letter-spacing: 1px;">Sketchat</h1>
-	  <p style="" class="slogon">&nbsp;We Sketch. We Chat.</p>
-	  <p style="">We Create a Amazing Application that People Want To Sketch and Chat.</p>
-	  <a href="./sign.html" type="button" class="btn btn-primary" id="enter">Sketchat with your friends!</a>
-	  <br />
-	  <iframe id="youtube" src="//www.youtube.com/embed/Neff9scaCCI" frameborder="0" allowfullscreen></iframe>
-	</div>
-      </section>
-
-      <section class="scroll-panel" id="about">
-	<div class="jumbotron jumbotron-midnight text-centered">
-	  <h1>Advanced Web Techniques</h1>
-	  <p style="">You will have a great experience.</p>
-	</div>
-
-	<div class="jumbotron jumbotron-midnight text-centered">
+	<div class="jumbotron">
 	  <div class="row">
-	    <div class="showcase-item col-md-4">
+
+	    <div class="cover-item col-md-8">
+	      <div class="cover-box">
+		<h1>We sketch. We chat.</h1>
+		<p>Online video conference and drawing canvas, convenient, easy and friendly interface to communicate and share your ideas with your mates. Try it and love it.</p>
+	      </div>
+	    </div>
+
+	    <div class="cover-item col-md-4">
+	      <div class="cover-box">
+		<form action="./enter_room.php" method="get">
+		  <input type="text" id="create-room-name" class="form-control sign-form cover-form" name="create-room-name" placeholder="Room ID" />
+		  <input type="text" id="create-user-name" class="form-control sign-form cover-form" name="create-user-name" placeholder="Your name" />
+		  <button id="cover-button" class="btn btn-lg btn-primary btn-embossed cover-button">Create a room</button>
+		</form>
+	      </div>
+	    </div>
+
+	  </div>
+	</div>
+
+      </div>
+    </section>
+
+
+    <section class="scroll-panel" id="power">
+      <div class="container">
+	<div class="jumbotron text-centered">
+
+	  <h2 class="block-title">The power of Sketchat</h2>
+	  <p>We Create a Amazing Application that People Want To Sketch and Chat.</p>
+
+	  <div class="row">
+	    <div class="showcase-item-1 col-md-4">
 	      <div class="showcase-item-box">
 		<img src="./img/html5logo.png" width="150"/>
-		<h3>HTML5</h3>
+		<h3>Live Video</h3>
 		<p>HTML5 is designed to deliver almost everything you want to do online without requiring additional plugins.</p>
 	      </div>
 	    </div>
 
-	    <div class="showcase-item col-md-4">
+	    <div class="showcase-item-1 col-md-4">
 	      <div class="showcase-item-box">
 		<img src="./img/nodejslogo.png" width="150"/>
-		<h3>Nodejs</h3>
+		<h3>Sketching board</h3>
 		<p>Node.js is a platform built on Chrome's JavaScript runtime for easily building fast, scalable network applications.</p>
 	      </div>
 	    </div>
 
-	    <div class="showcase-item col-md-4">
+	    <div class="showcase-item-1 col-md-4">
 	      <div class="showcase-item-box">
-		<img src="./img/webrtclogo.png" width="150"/>
-		<h3>WebRTC</h3>
+		<img src="./img/webrtclogo" width="150"/>
+		<h3>Chatting string</h3>
 		<p>WebRTC is a free, open project that enables web browsers with Real-Time Communications (RTC) capabilities.</p>
 	      </div>
 	    </div>
-	  </div>
-	</div>
-      </section>
 
-      <section class="scroll-panel" id="team">
-	<div class="jumbotron jumbotron-midnight text-centered">
-	  <h1>Great People do Great Things</h1>
-	  <p style="padding-top: 10px;">We are a team of enthusiast about web techniques from National Cheng Kung University (NCKU). </p>
+	  </div><!--End of row-->
+
+	</div>
+      </div><!--End of container-->
+    </section>
+
+    <section class="scroll-panel" id="reason">
+      <div class="container">
+	<div class="jumbotron text-centered">
+
+	  <h2 class="block-title">Why Sketchat</h2>
+	  <p>We Create a Amazing Application that People Want To Sketch and Chat.</p>
+
 	  <div class="row">
-	    <div class="showcase-item col-md-6">
-	      <div class="showcase-item-box-member">
-		<h2>Project Manager</h2>
-		<img src="./img/member/wonder.jpg" width="180" style="border-radius: 10px;"/>
-		<h3>Wonder Chang</h3>
-		<p style="font-size: 18px;">The leader of the team. Responsibles for project planning, developing, managing and desicison making.</p>
+	    <div class="showcase-item-2 col-md-4">
+	      <div class="showcase-item-box">
+		<img src="./img/html5logo.png" width="150"/>
+		<h3>Live Video</h3>
+		<p>HTML5 is designed to deliver almost everything you want to do online without requiring additional plugins.</p>
 	      </div>
 	    </div>
 
-	    <div class="showcase-item col-md-6">
-	      <div class="showcase-item-box-member">
-		<h2>Chief Engineer</h2>
-		<img src="./img/member/andy.jpg" width="180" style="border-radius: 10px;"/>
-		<h3>Andy Chen</h3>
-		<p style="font-size: 18px;">Responsibles for creating practical solution and tangible materials for an improved standard of project.</p>
+	    <div class="showcase-item-2 col-md-4">
+	      <div class="showcase-item-box">
+		<img src="./img/nodejslogo.png" width="150"/>
+		<h3>Sketching board</h3>
+		<p>Node.js is a platform built on Chrome's JavaScript runtime for easily building fast, scalable network applications.</p>
 	      </div>
 	    </div>
 
-	    <div class="showcase-item col-md-4">
-	      <div class="showcase-item-box-member">
-		<h2>Marketing Sale</h2>
-		<img src="./img/member/hong.jpg" width="150" style="border-radius: 10px;"/>
-		<h3>Zhen-Wei Hong</h3>
-		<p style="font-size: 18px;">Responsibles for project branding and marketing strategy. To introduce the concept and feature of our application. </p>
+	    <div class="showcase-item-2 col-md-4">
+	      <div class="showcase-item-box">
+		<img src="./img/webrtclogo" width="150"/>
+		<h3>Chatting string</h3>
+		<p>WebRTC is a free, open project that enables web browsers with Real-Time Communications (RTC) capabilities.</p>
 	      </div>
 	    </div>
 
-	    <div class="showcase-item col-md-4">
-	      <div class="showcase-item-box-member">
-		<h2>F2E Engineer</h2>
-		<img src="./img/member/fred.jpg" width="150" style="border-radius: 10px;"/>
-		<h3>Fred Peng</h3>
-		<p style="font-size: 18px;">Responsibles for designing layout and working on client-side markup/scripting.</p>
-	      </div>
-	    </div>
+	  </div><!--End of row-->
 
-	    <div class="showcase-item col-md-4">
-	      <div class="showcase-item-box-member">
-		<h2>Back-End Engineer</h2>
-		<img src="./img/member/pablo.jpg" width="150" style="border-radius: 10px;"/>
-		<h3>Pablo Gonzalez</h3>
-		<p style="font-size: 18px;">Responsibles for working on server-side logic application to enact database usage and managment.</p>
-	      </div>
-	    </div>
-
-
-	  </div>
 	</div>
-      </section>
+      </div><!--End of container-->
+    </section>
 
-    </div>
 
     <footer>
-      <div class="container">
-	<div class="text-centered">
-	    <p>&copy; 2013 Sketchat &nbsp;All rights reserved.</p>
+      <nav role="navigation">
+	<div class="container">
+	  <p class="copyright">&copy; 2013 Sketchat &nbsp;All rights reserved.</p>
+	  <ul class="site-footer-links">
+	    <li class="footer-link"><a href="./about.html">About</a></li>
+	    <li class="footer-link"><a href="./about.html">Privacy</a></li>
+	    <li class="footer-link"><a href="./contact.html">Contact</a></li>
+	  </ul>
 	</div>
-      </div>
+      </nav>
     </footer>
 
     <script src="./js/jquery.min.js"></script>
     <script src="./js/jquery.scrollto.min.js"></script>
     <script src="./js/bootstrap.min.js"></script>
     <script>
-      (function ($) {
-	$("footer").scrollTo();
-	$("#navbar").on("click", "li a", function() {
-	  var $clickedAnchor = $(this);
-	  var $panelToScrollTo = $("#" + $clickedAnchor.data("loc"));
-	  $panelToScrollTo.srollTo();
-	});
-      }(jQuery));
     </script>
   </body>
 </html>

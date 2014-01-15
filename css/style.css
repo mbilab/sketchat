@@ -1,167 +1,67 @@
-*{
+*{ 
   margin:0;
-  padding:0;
+  padding:0; 
 }
-body {
-  background: url('../node-drawing-game/assets/img/bg.png') repeat #e4e4e4; 
-  color: #1ABC9C;
+body { 
+  color: #555; 
+}
+.text-centered { 
+  text-align: center; 
+}
+.no-margin { 
+  margin: 0; 
 }
 
+/* Header */
 .navbar {
   z-index: 100;
   position: fixed;
   width: 100%;
-  padding: 0 20px;
+  padding: 6px 20px;
   border-radius: 0;
   background-color: #333;
   color: #FFF;
 }
-#enter {
-  font-size: 24px;
-  margin: 10px 0px 30px 0px;;
-
-}
-#youtube {
-  width: 640px;
-  height: 360px;
-}
 .menu-list {
-  font-size: 18px;
+  font-size: 14px;
 }
-
-.slogon {
-  margin-top: -10px; 
-  font-size: 18px; 
-  letter-spacing: 3px; 
-  word-spacing: 3px;
-}
-
 @media(max-width: 767px) {
-  #enter {
-    font-size: 18px;
-  }
-  .sologn {
-    font-size: 8px;
-  }
-  #youtube {
-    width: 100%;
-    height: 180px;
+  p {
+    font-size: 16px;
   }
 }
 
-
+/*Jumbotron panel*/
 .scroll-panel {
-  padding-top: 78px;
+  height: 100%;
+  padding-top: 64px;
+  border-bottom: 1px solid #DDD;
 }
-.scroll-panel-sign {
-  padding-top: 58px;
-}
-
 .jumbotron {
   border-radius: 0 !important;
   padding: 0 !important;
   background-color: none;
 }
 
-.jumbotron-midnight {
-  z-index:10;
-  background-color: none;
-  /* color: #1ABC9C;*/
-  color: #555;
-  margin: 0;
-}
-#home {
-  width: 100%;
-  height: 100%;
-}
-
-.showcase-item {
-  height: 420px;
-  padding: 2px;
-}
-.showcase-item .showcase-item-box {
-  /*background-color: #34495E;*/
-  background-color: none;
-  /*color: #1ABC9C;*/
-  color: #555;
-  padding: 40px;
-  height: 100%;
-  width: 100%;
-  text-align: center;
-}
-.showcase-item .showcase-item-box-member {
-  /*background-color: #7F8C8D;*/
-  background-color: none;
-  color: #555;
-  padding: 40px;
-  height: 100%;
-  width: 100%;
-  text-align: center;
-}
-.showcase-item .showcase-sign {
-  color: #555;
-  padding: 40px;
-  height: 100%;
-  width: 100%;
-  text-align: center;
-}
-
-.text-centered { text-align: center; }
-.no-margin { margin: 0; }
+/* General Footer */
 
 footer {
-  padding: 60px 0px 20px 0px;
-  font-size: 18px;
-  color: #555;
+  margin-bottom: -20px;
+}
+footer nav {
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+footer .copyright {
+  float: left; 
+  font-size: 14px;
+}
+footer .site-footer-links {
+  float: right;
+}
+footer .site-footer-links li {
+  display: inline-block; 
+  padding-left: 10px; 
+  font-size: 14px;
 }
 
-.sign-form {
-  margin-top: 20px;
-}
-.sign-button {
-  margin-top: 30px;
-}
-
-hgroup{
-  position: fixed;
-  background-color: rgba(255, 255, 255, 0.7);
-  width: 400px;
-  height: 78px;
-  top: 30%;
-  left: 50%;
-  margin: -120px 0 0 -225px;
-  text-align: center;
-  padding: 25px;
-  border-radius: 10px;
-  box-shadow: 0 0 3px rgba(100, 100, 100, 0.1), 0 3px 1px #D4D4D4;
-  color: #555;
-}
-hgroup>h1{
-  font-size: 22px;
-  padding-bottom: 8px;
-}
-
-hgroup>h2{
-  font-size: 13px;
-  font-weight: normal;
-  padding-bottom: 8px;
-}
-
-hgroup>h3{
-  font-size: 12px;
-  font-weight: normal;
-  font-style: italic;
-  color: #999;
-}
-
-
-#cursors{
-  position:relative;
-}
-
-#cursors .cursor{
-  position:absolute;
-  width:15px;
-  height:22px;
-  background:url('../node-drawing-game/assets/img/pointer.png') no-repeat -4px 0;
-}
