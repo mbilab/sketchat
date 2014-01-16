@@ -57,12 +57,28 @@
       connection = this.connection = io.connect(this.config.url);
 
       connection.on('connect', function () {
+
+	console.log("\nIn connection connect event");
+
+	var array = location.search.substr(1).split("?", 2);
+	var room_key = array[0];
+	var user_name = array[1];
+
+	$.ajax({
+	  url: './room-admin/set-user-session-id.php?room-key=' + room_key + '&user-name=' + user_name + "&session_id=" + connection.socket.sessionid,
+	  type: 'GET',
+	  dataType: 'text'
+	});
+
 	self.emit('connectionReady', connection.socket.sessionid);
 	self.sessionReady = true;
 	self.testReadiness();
       });
 
       connection.on('message', function (message) {
+
+	console.log("\nIn connection message event");
+
 	var peers = self.webrtc.getPeers(message.from, message.roomType);
 	var peer;
 
@@ -85,6 +101,11 @@
       });
 
       connection.on('remove', function (room) {
+
+	console.log("\nIn connection remove event");
+	console.log("room=");
+	console.log(room);
+
 	if (room.id !== self.connection.socket.sessionid) {
 	  self.webrtc.removePeers(room.id, room.type);
 	}
@@ -103,6 +124,9 @@
 
       // proxy events from WebRTC
       this.webrtc.on('*', function () {
+
+	console.log("\nIn webrtc * event");
+
 	self.emit.apply(self, arguments);
       });
 
@@ -113,10 +137,16 @@
 
       // check for readiness
       this.webrtc.on('localStream', function () {
+
+	console.log("\nIn webrtc localStream event");
+
 	self.testReadiness();
       });
 
       this.webrtc.on('message', function (payload) {
+
+	console.log("\nIn webrtc message event");
+
 	self.connection.emit('message', payload);
       });
 
@@ -140,6 +170,11 @@
     });
 
     SimpleWebRTC.prototype.leaveRoom = function () {
+
+      console.log("\nIn leaveRoom");
+      console.log("this=");
+      console.log(this);
+
       if (this.roomName) {
 	this.connection.emit('leave', this.roomName);
 	this.webrtc.peers.forEach(function (peer) {
@@ -153,6 +188,13 @@
     };
 
     SimpleWebRTC.prototype.handlePeerStreamAdded = function (peer) {
+
+      console.log("\nIn handlePeerStreamAdded");
+      console.log("this=");
+      console.log(this);
+      console.log("peer=");
+      console.log(peer);
+
       var container = this.getRemoteVideoContainer();
       var video = attachMediaStream(peer.stream);
 
@@ -166,41 +208,61 @@
     };
 
     SimpleWebRTC.prototype.handlePeerStreamRemoved = function (peer) {
-      console.log("-------------------------------------------------------------");
-      console.log("=====this=====");
+
+      console.log("\nIn handlePeerStreamRemove");
+      console.log("this=");
       console.log(this);
-      console.log("=====peer=====");
+      console.log("peer=");
       console.log(peer);
+
       //alert("someone has leaved the room");
-      
+
       //var container = this.getRemoteVideoContainer();
       var container = true;
-      console.log("=====container=====");
-      console.log(container);
       var videoEl = peer.videoEl;
-      console.log("=====videoEl=====");
+      console.log("videoEl=");
       console.log(videoEl.parentNode.id);
       if (this.config.autoRemoveVideos && container && videoEl) {
-        //gridster.remove_widget( $('.gridster li').eq(3) );
-        gridster.remove_widget($('#' + videoEl.parentNode.id));
+	//gridster.remove_widget( $('.gridster li').eq(3) );
+	gridster.remove_widget($('#' + videoEl.parentNode.id));
 	//container.removeChild(videoEl);
       }
       if (videoEl) this.emit('videoRemoved', videoEl, peer);
-      console.log("-------------------------------------------------------------");
     };
 
     SimpleWebRTC.prototype.getDomId = function (peer) {
+
+      console.log("\nIn getDomId");
+      console.log("peer");
+      console.log(peer);
+
       return [peer.id, peer.type, peer.broadcaster ? 'broadcasting' : 'incoming'].join('_');
     };
 
     // set volume on video tag for all peers takse a value between 0 and 1
     SimpleWebRTC.prototype.setVolumeForAll = function (volume) {
+
+      console.log("\nIn setVolumeForAll");
+      console.log("volume=");
+      console.log(volume);
+      console.log("this=");
+      console.log(this);
+
       this.webrtc.peers.forEach(function (peer) {
 	if (peer.videoEl) peer.videoEl.volume = volume;
       });
     };
 
     SimpleWebRTC.prototype.joinRoom = function (name, cb) {
+
+      console.log("\nIn joinRoom");
+      console.log("name=");
+      console.log(name);
+      console.log("cb=");
+      console.log(cb);
+      console.log("this=");
+      console.log(this);
+
       var self = this;
       this.roomName = name;
       this.connection.emit('join', name, function (err, roomDescription) {
@@ -231,6 +293,11 @@
     };
 
     SimpleWebRTC.prototype.getEl = function (idOrEl) {
+
+      console.log("\nIn getEl");
+      console.log("idOrEl=");
+      console.log(idOrEl);
+
       if (typeof idOrEl === 'string') {
 	return document.getElementById(idOrEl);
       } else {
@@ -239,6 +306,11 @@
     };
 
     SimpleWebRTC.prototype.startLocalVideo = function () {
+
+      console.log("\nIn startLocalVideo");
+      console.log("this=");
+      console.log(this);
+
       var self = this;
       this.webrtc.startLocalMedia(null, function (err, stream) {
 	if (err) {
@@ -250,6 +322,11 @@
     };
 
     SimpleWebRTC.prototype.stopLocalVideo = function () {
+
+      console.log("\nIn stopLocalVideo");
+      console.log("this=");
+      console.log(this);
+
       this.webrtc.stopLocalMedia();
     };
 
@@ -257,6 +334,11 @@
     // and either the video tag itself or a container
     // that will be used to put the video tag into.
     SimpleWebRTC.prototype.getLocalVideoContainer = function () {
+
+      console.log("\nIn getLocalVideoContainer");
+      console.log("this=");
+      console.log(this);
+
       var el = this.getEl(this.config.localVideoEl);
       if (el && el.tagName === 'VIDEO') {
 	return el;
@@ -271,21 +353,27 @@
     };
 
     SimpleWebRTC.prototype.getRemoteVideoContainer = function () {
-     var gridster = $(".gridster ul").gridster({
+
+      console.log("\nIn getRemoteVideoContainer"); 
+      console.log("this=");
+      console.log(this);
+
+      var gridster = $(".gridster ul").gridster({
 	widget_base_dimensions: [100, 55],
-	       widget_margins: [5, 5],
-	       helper: 'clone',
-	       resize: {
-		 enabled: true
-	       }
+	  widget_margins: [5, 5],
+	  helper: 'clone',
+	  resize: {
+	    enabled: true
+	  }
       }).data('gridster');
       var time = new Date();
       time = time.getTime();
       time = "r_" + time;
       var tmp = '<li id="' + time + '"></li>';
-      console.log("----------------from add------------------");
 
+      console.log("Create an gridster block element by selected id: " + tmp);
       console.log($("#" + this.config.remoteVideosEl));
+
       var count = parseInt($("#" + this.config.remoteVideosEl)[0].childElementCount); 
       var x_position;
       var y_position = (parseInt(count / 4) * 4) + 1;
@@ -300,7 +388,7 @@
       }
       else {
 	x_position = count * 3;
-      
+
       }
       gridster.add_widget(tmp, 3, 4, x_position, y_position);
       //return this.getEl(this.config.remoteVideosEl);
@@ -308,6 +396,11 @@
     };
 
     SimpleWebRTC.prototype.shareScreen = function (cb) {
+
+      console.log("\nIn shareScreen");
+      console.log("cb=");
+      console.log(cb);
+
       var self = this,
 	  peer;
       getScreenMedia(function (err, stream) {
@@ -352,10 +445,20 @@
     };
 
     SimpleWebRTC.prototype.getLocalScreen = function () {
+
+      console.log("\nIn getLocalScreen");
+      console.log("this=");
+      console.log(this);
+
       return this.webrtc.localScreen;
     };
 
     SimpleWebRTC.prototype.stopScreenShare = function () {
+
+      console.log("\nIn stopScreenShare");
+      console.log("this=");
+      console.log(this);
+
       this.connection.emit('unshareScreen');
       var videoEl = document.getElementById('localScreen');
       var container = this.getRemoteVideoContainer();
@@ -378,6 +481,11 @@
     };
 
     SimpleWebRTC.prototype.testReadiness = function () {
+
+      console.log("\nIn testReadiness");
+      console.log("this=");
+      console.log(this);
+
       var self = this;
       if (this.webrtc.localStream && this.sessionReady) {
 	// This timeout is a workaround for the strange no-audio bug
@@ -390,6 +498,15 @@
     };
 
     SimpleWebRTC.prototype.createRoom = function (name, cb) {
+
+      console.log("\nIn createRoom");
+      console.log("this=");
+      console.log(this);
+      console.log("name=");
+      console.log(name);
+      console.log("cb=");
+      console.log(cb);
+
       if (arguments.length === 2) {
 	this.connection.emit('create', name, cb);
       } else {
@@ -398,6 +515,11 @@
     };
 
     SimpleWebRTC.prototype.sendFile = function () {
+
+      console.log("\nIn sendFile");
+      console.log("this=");
+      console.log(this);
+
       if (!webrtcSupport.dataChannel) {
 	return this.emit('error', new Error('DataChannelNotSupported'));
       }
@@ -858,7 +980,7 @@
 
       WildEmitter.call(this);
 
-     // log events in debug mode
+      // log events in debug mode
       if (this.config.debug) {
 	this.on('*', function (event, val1, val2) {
 	  var logger;

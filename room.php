@@ -133,6 +133,18 @@ var height = window.innerHeight;
 $("#sketch-board").css("height", (height - 56) + "px");
 $("#sketch-board").css("top", (height) + "px");
 
+window.onbeforeunload = function() {
+  var ary = location.search.substr(1).split("?", 2);
+  var room_key = ary[0];
+  var user_name = ary[1];
+  $.ajax({
+	url: './room-admin/user-leave.php?room-key=' + room_key + '&user-name=' + user_name,
+  	type: 'GET',
+  	async: false,
+  	timeout: 4000,
+	dataType: 'text'
+  });
+};
 
 $(function(){
 
