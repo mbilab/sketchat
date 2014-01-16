@@ -30,7 +30,8 @@ body {
 /*/
 
 .gridster ul {
-    background-color: #EFEFEF;
+    /*background-color: #EFEFEF;*/
+  background-color: #999;
 }
 
 .gridster li {

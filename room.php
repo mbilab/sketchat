@@ -36,7 +36,6 @@ if($key != NULL) {
 else
   header("location: ./");
 
-
 ?>
 
 
@@ -56,7 +55,6 @@ else
     <link href="./css/bootstrap.css" rel="stylesheet">
     <link href="./css/style.css" rel="stylesheet">
     <link href="./css/room.css" rel="stylesheet">
-    <link href="./css/other.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="./gridster/jquery.gridster.css">
     <link rel="stylesheet" type="text/css" href="./gridster/demo.css">
     <link rel="stylesheet" type="text/css" href="./gridster/size.css">
@@ -78,7 +76,7 @@ else
 	      <span class="icon-bar"></span>
 	      <span class="icon-bar"></span>
 	    </button>
-	    <a class="navbar-brand" href="./" style="font-size: 30px; padding-left: 0px; letter-spacing:1px;">Sketchat</a>
+	    <a class="navbar-brand" href="./" target="_blank" style="font-size: 30px; padding-left: 0px; letter-spacing:1px;">Sketchat</a>
 	  </div>
 	  <!-- Collect the nav links, forms, and other content for toggling -->
 	  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -90,6 +88,7 @@ else
 	</div>
       </nav>
     </div>
+
 
     <div class="gridster ready" id="video-conference">
       <ul id="remotes">
@@ -105,15 +104,11 @@ else
       <h3>Tip: if the stage gets dirty, simply reload the page</h3>
     </hgroup-->
     <section id="sketch-board">
-      <div id='draw' style='position: relative; top: 55px;'>
+      <div id='draw' style='position: relative; top: 56px;'>
 	<canvas id='paper' height= "1000" width= "1900">
 	</canvas>
       </div>
     </section>
-
-    <div class="lightbox-background"></div>
-    <div class="lightbox-content">
-    </div>
 
     <script src="./js/jquery.min.js"></script>
     <script src="./js/bootstrap.min.js"></script>
@@ -130,8 +125,10 @@ var width = window.innerWidth;
 var height = window.innerHeight;
 
 //Set block size
-$("#sketch-board").css("height", (height - 56) + "px");
-$("#sketch-board").css("top", (height) + "px");
+$("#sketch-board").css("height", (height) + "px");
+$("#sketch-board").css("width", (width) + "px");
+$(".gridster ul").css("width", (width) + "px");
+//$("#sketch-board").css("top", "56px");
 
 window.onbeforeunload = function() {
   var ary = location.search.substr(1).split("?", 2);
