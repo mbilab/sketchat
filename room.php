@@ -99,11 +99,11 @@ else
 
 
     <div id='cursors'></div>
-    <hgroup id="instructions">		
+    <!--hgroup id="instructions">		
       <h1>Draw anywhere!</h1>
       <h2>You will see everyone else who's doing the same.</h2>
       <h3>Tip: if the stage gets dirty, simply reload the page</h3>
-    </hgroup>
+    </hgroup-->
     <section id="sketch-board">
       <div id='draw' style='position: relative; top: 55px;'>
 	<canvas id='paper' height= "1000" width= "1900">
@@ -134,6 +134,18 @@ $("#sketch-board").css("height", (height - 56) + "px");
 $("#sketch-board").css("top", (height) + "px");
 
 window.onbeforeunload = function() {
+  var ary = location.search.substr(1).split("?", 2);
+  var room_key = ary[0];
+  var user_name = ary[1];
+  $.ajax({
+	url: './room-admin/user-leave.php?room-key=' + room_key + '&user-name=' + user_name,
+  	type: 'GET',
+  	async: false,
+  	timeout: 4000,
+	dataType: 'text'
+  });
+};
+window.onunload = function() {
   var ary = location.search.substr(1).split("?", 2);
   var room_key = ary[0];
   var user_name = ary[1];
