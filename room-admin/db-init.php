@@ -2,8 +2,8 @@
 
 require_once("./db-config.php");
 
-$PORT_HEAD = 1000;
-$PORT_TAIL = 1020;
+$PORT_HEAD = 5000;
+$PORT_TAIL = 5020;
 
 clean_table("room");
 clean_table("user");

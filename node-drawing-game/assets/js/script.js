@@ -7,7 +7,22 @@ $(function(){
 	}
 	//console.log('s');
 	// The URL of your web server (the port is set in app.js)
-	var url = 'http://59.127.174.192:1234';
+	//var url = 'http://59.127.174.192:';
+	//var port_url = 'http://59.127.174.192:5000';
+	var port_url;
+	
+	var ary = location.search.substr(1).split("?", 2);
+	var room_key = ary[0];
+	var user_name = ary[1];
+
+	$.ajax({
+	  url: './room-admin/set-drawing-port.php?room-key=' + room_key,
+	  type: 'GET',
+	  async: 'false',
+	  timeout: 4000,
+	  dataType: 'text',
+	  success: function(msg) {
+	    port_url = 'http://59.127.174.192:' + msg;
 
 	var doc = $(document),
 		win = $(window),
@@ -29,7 +44,7 @@ $(function(){
 	var clients = {};
 	var cursors = {};
 
-	var socket = io.connect(url);
+	var socket = io.connect(port_url);
 	
 	socket.on('moving', function (data) {
 		
@@ -124,5 +139,7 @@ $(function(){
 		ctx.lineTo(tox, toy);
 		ctx.stroke();
 	}
+	  }
+	});
 
 });

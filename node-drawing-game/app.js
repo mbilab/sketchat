@@ -1,6 +1,7 @@
 // Including libraries
 
-var port = 1234;
+var port = parseInt(process.argv[2]);
+//var port = 5000;
 
 var app = require('http').createServer(handler),
     io = require('socket.io').listen(app),
