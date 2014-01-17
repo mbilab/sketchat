@@ -37,10 +37,17 @@ body {
   padding-top: 56px;
   border-bottom: 1px solid #DDD;
 }
+.block-title {
+  letter-spacing: 1px;
+  font-size: 42px;
+}
 .jumbotron {
   border-radius: 0 !important;
   padding: 0 !important;
   background-color: none;
+}
+.paragraph {
+  padding-top: 100px;
 }
 
 /* General Footer */
