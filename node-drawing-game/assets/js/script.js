@@ -89,6 +89,7 @@ $(function(){
 	instructions.fadeOut();
       });
 
+      /*
       canvas.addEventListener('touchstart',function(e){
 	//alert("touchstart");
 	//alert(e.offsetX);
@@ -101,6 +102,7 @@ $(function(){
 	// Hide the instructions
 	instructions.fadeOut();
       });
+      */
      
       /*
       doc.bind('mouseup mouseleave',function(){
@@ -113,10 +115,12 @@ $(function(){
       document.addEventListener('mouseup',function(){
 	drawing = false;
       });
+      /*
       document.addEventListener('touchend',function(){
 	alert("touchend");
 	drawing = false;
       });
+      */
 
       var lastEmit = $.now();
 

@@ -46,9 +46,6 @@ body {
   padding: 0 !important;
   background-color: none;
 }
-.paragraph {
-  padding-top: 100px;
-}
 
 /* General Footer */
 
@@ -72,3 +69,14 @@ footer .site-footer-links li {
   font-size: 14px;
 }
 
+@media(max-width: 767px) {
+  footer .site-footer-links {
+    float: none;
+    text-align: center;
+  }
+  footer .copyright {
+    float: none;
+    text-align: center;
+  }
+
+}

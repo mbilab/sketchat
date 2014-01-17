@@ -101,7 +101,9 @@ if($result1_num != 1 || $result2_num != 1)
 
     <script src="./js/jquery.min.js"></script>
     <script src="./js/bootstrap.min.js"></script>
+    <script src="./js/qrcodejs/qrcode.js"></script>
     <script>
+
       var width = window.innerWidth;
       var height = window.innerHeight;
       var url_parameter = location.search.substr(1);
@@ -110,7 +112,7 @@ if($result1_num != 1 || $result2_num != 1)
       $('#url-text').attr('value', 'http://wonderbee.no-ip.biz/sketchat/room.php?' + access_key[0]);
 
       $('#welcome').css('width', width + 'px');
-      $('#welcome').css('height', (height) + 'px');
+      //$('#welcome').css('height', (height) + 'px');
 
     </script>
   </body>

@@ -4,10 +4,9 @@
   width: 100%;
   height: 100%;
 }
-.cover-item {
-}
+
 .cover-box {
-  padding: 40px;
+  padding: 35px;
   height: 100%;
   width: 100%;
 }
@@ -23,9 +22,27 @@
 }
 
 
+@media(max-width: 980px) {
+  #cover {
+    padding-top: 100px;
+    padding-bottom: 70px;
+  }
+  .cover-box {
+    padding: 0px 40px;
+  }
+  .cover-box h1 {
+    text-align: center;
+  }
+  
+}
+
 @media(max-width: 767px) {
   .cover-box {
-    padding: 20px 40px;
+    padding: 0px 40px;
+  }
+  .cover-box h1 {
+    text-align: left;
+    font-size: 48px;
   }
 }
 
@@ -37,16 +54,22 @@
   font-size: 42px;
 }
 .showcase-item-1 {
-  height: 380px;
+  height: 180px;
 }
 .showcase-item-2 {
   height: 380px;
 }
 .showcase-item-box {
-  padding: 40px;
+  padding: 10px 10px;
   height: 100%;
   width: 100%;
-  text-align: center;
+}
+.showcase-item-box p {
+  font-size: 18px;
+}
+
+#why {
+  padding-top: 30px;
 }
 
 

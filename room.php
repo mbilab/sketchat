@@ -119,6 +119,18 @@ else
     <script src='./node-drawing-game/assets/js/script.js'></script>
 
 <script>
+
+var isMobile = {
+  Android: function() { return navigator.userAgent.match(/Android/i); },
+    BlackBerry: function() { return navigator.userAgent.match(/BlackBerry/i); },
+    iOS: function() { return navigator.userAgent.match(/iPhone|iPad|iPod/i); },
+    Opera: function() { return navigator.userAgent.match(/Opera Mini/i); },
+    Windows: function() { return navigator.userAgent.match(/IEMobile/i); },
+    any: function() { return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows()); }
+};
+
+if(isMobile.iOS()) { $("#video-conference").remove(); }
+
 var gridster;
 var width = window.innerWidth;
 var height = window.innerHeight;
@@ -134,11 +146,11 @@ window.onbeforeunload = function() {
   var room_key = ary[0];
   var user_name = ary[1];
   $.ajax({
-	url: './room-admin/user-leave.php?room-key=' + room_key + '&user-name=' + user_name,
-  	type: 'GET',
-  	async: false,
-  	timeout: 4000,
-	dataType: 'text'
+    url: './room-admin/user-leave.php?room-key=' + room_key + '&user-name=' + user_name,
+      type: 'GET',
+      async: false,
+      timeout: 4000,
+      dataType: 'text'
   });
 };
 window.onunload = function() {
@@ -146,11 +158,11 @@ window.onunload = function() {
   var room_key = ary[0];
   var user_name = ary[1];
   $.ajax({
-	url: './room-admin/user-leave.php?room-key=' + room_key + '&user-name=' + user_name,
-  	type: 'GET',
-  	async: false,
-  	timeout: 4000,
-	dataType: 'text'
+    url: './room-admin/user-leave.php?room-key=' + room_key + '&user-name=' + user_name,
+      type: 'GET',
+      async: false,
+      timeout: 4000,
+      dataType: 'text'
   });
 };
 
