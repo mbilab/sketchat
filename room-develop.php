@@ -2,6 +2,7 @@
 
 require_once("./room-admin/db-config.php");
 
+/*
 $url = $_SERVER['REQUEST_URI'];
 $array = explode("?", $url, 3);
 $key = $array[1];
@@ -35,6 +36,7 @@ if($key != NULL) {
 }
 else
   header("location: ./");
+ */
 
 ?>
 
@@ -67,24 +69,26 @@ else
 
     <div id="header">
       <nav id="navbar" class="navbar navbar-default" role="navigation">
-	<!-- Brand and toggle get grouped for better mobile display -->
-	<div class="navbar-header">
-	  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-	    <span class="sr-only">Toggle navigation</span>
-	    <span class="icon-bar"></span>
-	    <span class="icon-bar"></span>
-	    <span class="icon-bar"></span>
-	  </button>
-	  <a class="navbar-brand" href="./" target="_blank" style="font-size: 30px; padding-left: 0px; letter-spacing:1px;">Sketchat</a>
-	</div>
-	<!-- Collect the nav links, forms, and other content for toggling -->
-	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-	  <ul class="nav navbar-nav navbar-right">
-	    <button id="clean-button" type="button" class="btn btn-success" style="margin-top: 8px;">Clean drawing board</button>
-	    <!--li><a href="./about.html" data-loc="about" class="menu-list">About</a></li>
-	  <li><a href="./feature.html" data-loc="feature" class="menu-list">Feature</a></li-->
-	  </ul>
-	</div><!-- /.navbar-collapse -->
+	<!--div class="container"-->
+	  <!-- Brand and toggle get grouped for better mobile display -->
+	  <div class="navbar-header">
+	    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+	      <span class="sr-only">Toggle navigation</span>
+	      <span class="icon-bar"></span>
+	      <span class="icon-bar"></span>
+	      <span class="icon-bar"></span>
+	    </button>
+	    <a class="navbar-brand" href="./" target="_blank" style="font-size: 30px; padding-left: 0px; letter-spacing:1px;">Sketchat</a>
+	  </div>
+	  <!-- Collect the nav links, forms, and other content for toggling -->
+	  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	    <ul class="nav navbar-nav navbar-right">
+	      <button id="clean-button" type="button" class="btn btn-success" style="margin-top: 8px;">Clean drawing board</button>
+	      <!--li><a href="./about.html" data-loc="about" class="menu-list">About</a></li>
+	    <li><a href="./feature.html" data-loc="feature" class="menu-list">Feature</a></li-->
+	    </ul>
+	  </div><!-- /.navbar-collapse -->
+	<!--/div-->
       </nav>
     </div>
 
@@ -105,7 +109,6 @@ else
     <section id="sketch-board">
       <div id='draw' style='position: relative; top: 56px;'>
 	<canvas id='paper' height= "1000" width= "1900">
-	</canvas>
       </div>
     </section>
 
@@ -116,7 +119,7 @@ else
     <script src="./simplewebrtc/simplewebrtc.bundle.js"></script>
     <script src="./simplewebrtc/main.js"></script>
     <script src="./gridster/jquery.gridster.js"></script>
-    <script src='./node-drawing-game/assets/js/script.js'></script>
+    <script src='./node-drawing-game/assets/js/script-develop.js'></script>
 
 <script>
 var gridster;

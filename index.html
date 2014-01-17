@@ -57,10 +57,10 @@
 
 	    <div class="cover-item col-md-4">
 	      <div class="cover-box">
-		<form action="./room-admin/room-ready.php" method="get">
+		<form action="./room-admin/room-ready.php" method="get" id="sign-form">
 		  <input type="text" id="room-name" class="form-control sign-form cover-form" name="room-name" placeholder="Room name" />
 		  <input type="text" id="user-name" class="form-control sign-form cover-form" name="user-name" placeholder="Your name" />
-		  <button id="cover-button" class="btn btn-lg btn-primary btn-embossed cover-button">Create a room</button>
+		  <input id="cover-button" class="btn btn-lg btn-primary btn-embossed cover-button" type="submit" value="Create a room"></button>
 		</form>
 	      </div>
 	    </div>
@@ -163,7 +163,6 @@
     </footer>
 
     <script src="./js/jquery.min.js"></script>
-    <script src="./js/jquery.scrollto.min.js"></script>
     <script src="./js/bootstrap.min.js"></script>
     <script>
     </script>

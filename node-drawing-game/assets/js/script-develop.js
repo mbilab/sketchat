@@ -19,7 +19,7 @@ $(function(){
     dataType: 'text',
     success: function(msg) { 
 
-      var port_url = 'http://59.127.174.192:' + msg;
+      var port_url = 'http://59.127.174.192:5020';
       var doc = $(document);
       var win = $(window);
       //var canvas = $('#paper');
@@ -32,13 +32,13 @@ $(function(){
       var wy = window.innerHeight;
       var conf_height_string = $(".gridster ul").css("height");
       var conf_height = conf_height_string.substr(0, conf_height_string.length - 2); 
-      console.log(conf_height);
 
       $('canvas')[0].width = wx;
       $('canvas')[0].height = wy;
 
       // Generate an unique ID
       var id = Math.round($.now()*Math.random());
+      console.log(id);
 
       // A flag for drawing activity
       var drawing = false;
@@ -67,7 +67,7 @@ $(function(){
 
 	  // Draw a line on the canvas. clients[data.id] holds
 	  // the previous position of this user's mouse pointer
-
+	  //console.log(clients[data.id]);
 	  drawLine(clients[data.id].x * wx, clients[data.id].y * wy, data.x * wx, data.y * wy);
 	}
 
@@ -84,37 +84,31 @@ $(function(){
 	drawing = true;
 	prev.x = e.offsetX/wx;
 	prev.y = e.offsetY/wy;
-	console.log(prev);
 	// Hide the instructions
-	instructions.fadeOut();
+	//instructions.fadeOut();
       });
 
       canvas.addEventListener('touchstart',function(e){
-	//alert("touchstart");
-	//alert(e.offsetX);
-	console.log(e);
 	e.preventDefault();
 	drawing = true;
 	prev.x = e.offsetX/wx;
 	prev.y = e.offsetY/wy;
-	console.log(prev);
 	// Hide the instructions
-	instructions.fadeOut();
+	//instructions.fadeOut();
       });
-     
+
       /*
-      doc.bind('mouseup mouseleave',function(){
-	drawing = false;
-      });
-      doc.bind('touchend mouseleave',function(){
-	drawing = false;
-      });
-      */
+	 doc.bind('mouseup mouseleave',function(){
+	 drawing = false;
+	 });
+	 doc.bind('touchend mouseleave',function(){
+	 drawing = false;
+	 });
+	 */
       document.addEventListener('mouseup',function(){
 	drawing = false;
       });
       document.addEventListener('touchend',function(){
-	alert("touchend");
 	drawing = false;
       });
 
@@ -183,6 +177,7 @@ $(function(){
       },10000);
 
       function drawLine(fromx, fromy, tox, toy){
+	//console.log("(" + fromx + ", " + fromy + ") -> (" + tox + ", " + toy);
 	ctx.moveTo(fromx, fromy);
 	ctx.lineTo(tox, toy);
 	ctx.stroke();
@@ -206,7 +201,9 @@ $(function(){
 	  //instructions.fadeOut();
 	});
       });
+
     }
+
   });
 
 });
