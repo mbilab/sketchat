@@ -9,6 +9,8 @@ $name = $array[2];
 
 $result1 = mysql_query("SELECT * FROM room WHERE access_key='$key' AND over_time is NULL");
 $result1_num = mysql_num_rows($result1);
+$row = mysql_fetch_assoc($result1);
+$room_name = $row['name'];
 
 $result2 = mysql_query("SELECT * FROM user WHERE name='$name' AND leave_time is NULL");
 $result2_num = mysql_num_rows($result2);
@@ -55,8 +57,8 @@ if($result1_num != 1 || $result2_num != 1)
 	  <!-- Collect the nav links, forms, and other content for toggling -->
 	  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 	    <ul class="nav navbar-nav navbar-right">
-	      <!--li><a href="./about.html" data-loc="about" class="menu-list">About</a></li>
-	    <li><a href="./feature.html" data-loc="feature" class="menu-list">Feature</a></li-->
+	      <li><a href="./about.html" target="_blank" data-loc="about" class="menu-list">About</a></li>
+	      <li><a href="./features.html" target="_blank" data-loc="feature" class="menu-list">Features</a></li>
 	    </ul>
 	  </div><!-- /.navbar-collapse -->
 	</div>
@@ -71,9 +73,9 @@ if($result1_num != 1 || $result2_num != 1)
 
 	    <div class="jumbotron text-centered">
 	      <div class="welcome-container">
-		<h2 class="block-title">Welcome creating a new sketchat room!</h2>
+	      <h2 class="block-title">Room "<?php echo $room_name; ?>" is ready!</h2>
 		<div class="url-container col-md-6 col-md-offset-3">
-		  <p>People who want to sketchat with you only connect to this url, so share this url to someone you want to sketchat.</p>
+		  <p>People who want to sketchat you only connect to this url.<br />Share this url to someone you want to sketchat.</p>
 		  <input id="url-text" type="text" class="form-control sign-form" />
 		  <a id="start-button" class="btn btn-lg btn-primary btn-embossed start-button">Start your room</a>
 		</div>
