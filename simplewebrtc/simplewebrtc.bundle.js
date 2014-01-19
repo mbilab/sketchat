@@ -60,12 +60,8 @@
 
 	console.log("\nIn connection connect event");
 
-	var array = location.search.substr(1).split("?", 2);
-	var room_key = array[0];
-	var user_name = array[1];
-
 	$.ajax({
-	  url: './room-admin/set-user-session-id.php?room-key=' + room_key + '&user-name=' + user_name + "&session_id=" + connection.socket.sessionid,
+	  url: './room-admin/set-user-online.php',
 	  type: 'GET',
 	  dataType: 'text'
 	});

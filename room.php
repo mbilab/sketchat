@@ -3,41 +3,35 @@
 require_once("./room-admin/db-config.php");
 
 $url = $_SERVER['REQUEST_URI'];
-$array = explode("?", $url, 3);
-$key = $array[1];
-$name = $array[2];
+$array = explode("?", $url, 2);
+$room_key = $array[1];
 
-if($key != NULL) {
-  $result = mysql_query("SELECT * FROM room WHERE access_key='$key' AND over_time is NULL");
-  $room_num = mysql_num_rows($result);
-  if($room_num == 1) {
-    if($name != NULL) {
-      $result = mysql_query("SELECT * FROM user WHERE name='$name' AND leave_time is NULL");
-      $user_num = mysql_num_rows($result);
-      if($user_num == 1) {
-	$row = mysql_fetch_assoc($result);
-	if(!$row['online']) {
-	  mysql_query("UPDATE user SET online=1 WHERE id={$row['id']}");
-	}
-	else 
-	  header("location: ./ready-user.php?$key");
+if($room_key != NULL) {
+  $_SESSION['room-key'] = $room_key;
+  $result = mysql_query("SELECT * FROM room WHERE access_key='$room_key' AND over_time is NULL");
+  $num = mysql_num_rows($result);
+  if($num == 1) {
+    $user_name = $_SESSION['user-name'];
+    if($user_name != NULL) {
+      $row = mysql_fetch_assoc($result);
+      $room_id = $row['id'];
+      $result = mysql_query("SELECT * FROM user WHERE name='$user_name' AND room=$room_id");
+      $num = mysql_num_rows($result);
+      if($num != 1) {
+	$_SESSION['user-name'] = NULL;
+	header("location: ./ready-user.php?$room_key");
       }
-      else
-	header("location: ./");
     }
     else
-      header("location: ./ready-user.php?$key");
+      header("location: ./ready-user.php?$room_key");
   }
-  else if($room_num == 0)
-    header("location: ./");
-  else 
+  else
     header("location: ./");
 }
 else
   header("location: ./");
 
 ?>
-
 
 <!DOCTYPE html>
 <html>
@@ -75,10 +69,13 @@ else
 	    <span class="icon-bar"></span>
 	    <span class="icon-bar"></span>
 	  </button>
-	  <a class="navbar-brand" href="./" target="_blank" style="font-size: 30px; padding-left: 0px; letter-spacing:1px;">Sketchat</a>
+	  <a class="navbar-brand" href="./" style="font-size: 30px; padding-left: 0px; letter-spacing:1px;"><img src="./img/index/sketchat-logo.png" height="35"/> Sketchat</a>
 	</div>
 	<!-- Collect the nav links, forms, and other content for toggling -->
 	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+	    <button id="clean-button" type="button" class="btn btn-success" style="margin-top: 8px;">Share Link</button>
+	  </ul>
 	  <ul class="nav navbar-nav navbar-right">
 	    <button id="clean-button" type="button" class="btn btn-success" style="margin-top: 8px;">Clean drawing board</button>
 	    <!--li><a href="./about.html" data-loc="about" class="menu-list">About</a></li>
@@ -95,17 +92,9 @@ else
       </ul>
     </div>
 
-
-    <div id='cursors'></div>
-    <!--hgroup id="instructions">		
-      <h1>Draw anywhere!</h1>
-      <h2>You will see everyone else who's doing the same.</h2>
-      <h3>Tip: if the stage gets dirty, simply reload the page</h3>
-    </hgroup-->
     <section id="sketch-board">
       <div id='draw' style='position: relative; top: 56px;'>
-	<canvas id='paper' height= "1000" width= "1900">
-	</canvas>
+        <canvas id='paper' height= "2000" width= "3000"></canvas>
       </div>
     </section>
 
@@ -116,7 +105,10 @@ else
     <script src="./simplewebrtc/simplewebrtc.bundle.js"></script>
     <script src="./simplewebrtc/main.js"></script>
     <script src="./gridster/jquery.gridster.js"></script>
-    <script src='./node-drawing-game/assets/js/script.js'></script>
+    <!--script src='./node-drawing-game/assets/js/script.js'></script-->
+    <script src="./paper/js/paper.js"></script>
+    <script type='text/paperscript' src='./paper/js/drawLine.js' canvas='paper'></script>
+    <script src="./paper/js/socket.io.js"></script>
 
 <script>
 
@@ -158,7 +150,7 @@ window.onunload = function() {
   var room_key = ary[0];
   var user_name = ary[1];
   $.ajax({
-    url: './room-admin/user-leave.php?room-key=' + room_key + '&user-name=' + user_name,
+    url: './room-admin/user-leave.php',
       type: 'GET',
       async: false,
       timeout: 4000,

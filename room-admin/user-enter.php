@@ -1,6 +1,7 @@
 <?php
 
 require_once("./db-config.php");
+session_start();
 
 $room_key = $_GET['room-key'];
 $user_name = $_GET['user-name'];
@@ -11,15 +12,17 @@ if($room_key != NULL && $user_name != NULL) {
   $row = mysql_fetch_assoc($result);
   $room_id = $row['id'];
 
-  $result = mysql_query("SELECT * FROM user WHERE name='$user_name' AND room=$room_id AND leave_time IS NOT NULL");
+  $result = mysql_query("SELECT * FROM user WHERE name='$user_name' AND room=$room_id");
   $num = mysql_num_rows($result);
   if($num == 0) {
     $time = date("H-m-d H:i:s");
     $user_id = get_table_row_num('user') + 1;    
     $ip = get_client_ip();
     $device = $_SERVER['HTTP_USER_AGENT'];
-    mysql_query("INSERT INTO user SET id=$user_id, name='$user_name', ip='$ip', device='$device', room=$room_id, enter_time='$time'");
-    header("location: ../room.php?$room_key?$user_name");
+    mysql_query("INSERT INTO user SET id=$user_id, name='$user_name', ip='$ip', device='$device', room=$room_id");
+    $_SESSION['room-key'] = $room_key;
+    $_SESSION['user-name'] = $user_name;
+    header("location: ../room.php?$room_key");
   }
   else if($num ==1) {
     echo "<script>alert('This room name is using now, Please rename an another name.'); location.href='../'</script>";

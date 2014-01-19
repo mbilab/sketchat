@@ -1,21 +1,28 @@
 <?php
-
 require_once("./room-admin/db-config.php");
 
-$url = $_SERVER['REQUEST_URI'];
-$array = explode("?", $url, 3);
-$key = $array[1];
-$name = $array[2];
+$room_key = $_SESSION['room-key'];
+$user_name = $_SESSION['user-name'];
 
-$result1 = mysql_query("SELECT * FROM room WHERE access_key='$key' AND over_time is NULL");
-$result1_num = mysql_num_rows($result1);
-$row = mysql_fetch_assoc($result1);
-$room_name = $row['name'];
-
-$result2 = mysql_query("SELECT * FROM user WHERE name='$name' AND leave_time is NULL");
-$result2_num = mysql_num_rows($result2);
-
-if($result1_num != 1 || $result2_num != 1)
+if($room_key != NULL && $user_name != NULL) {
+  $result = mysql_query("SELECT * FROM room WHERE access_key='$room_key' AND over_time is NULL");
+  $result_num = mysql_num_rows($result);
+  $row = mysql_fetch_assoc($result);
+  $room_name = $row['name'];
+  $user_id = $row['creater'];
+  if($result_num == 1) { 
+    $result = mysql_query("SELECT * FROM user WHERE name='$user_name'");
+    $result_num = mysql_num_rows($result);
+    $row = mysql_fetch_assoc($result); 
+    if($user_id == $row['id']) 
+      $url = "http://".$_SERVER['HTTP_HOST']."/sketchat/room.php?".$room_key;
+    else
+      header("location: ./");
+  }
+  else 
+    header("location: ./");
+}
+else
   header("location: ./");
 
 ?>
@@ -43,7 +50,6 @@ if($result1_num != 1 || $result2_num != 1)
 
     <div id="header">
       <nav id="navbar" class="navbar navbar-default" role="navigation">
-	<div class="container">
 	  <!-- Brand and toggle get grouped for better mobile display -->
 	  <div class="navbar-header">
 	    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -52,7 +58,7 @@ if($result1_num != 1 || $result2_num != 1)
 	      <span class="icon-bar"></span>
 	      <span class="icon-bar"></span>
 	    </button>
-	    <a class="navbar-brand" href="./" style="font-size: 30px; padding-left: 0px; letter-spacing:1px;">Sketchat</a>
+	    <a class="navbar-brand" href="./" style="font-size: 30px; padding-left: 0px; letter-spacing:1px;"><img src="./img/index/sketchat-logo.png" height="35"/> Sketchat</a>
 	  </div>
 	  <!-- Collect the nav links, forms, and other content for toggling -->
 	  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -61,7 +67,6 @@ if($result1_num != 1 || $result2_num != 1)
 	      <li><a href="./features.html" target="_blank" data-loc="feature" class="menu-list">Features</a></li>
 	    </ul>
 	  </div><!-- /.navbar-collapse -->
-	</div>
       </nav>
     </div>
 
@@ -73,15 +78,14 @@ if($result1_num != 1 || $result2_num != 1)
 
 	    <div class="jumbotron text-centered">
 	      <div class="welcome-container">
-	      <h2 class="block-title">Room "<?php echo $room_name; ?>" is ready!</h2>
 		<div class="url-container col-md-6 col-md-offset-3">
-		  <p>People who want to sketchat you only connect to this url.<br />Share this url to someone you want to sketchat.</p>
-		  <input id="url-text" type="text" class="form-control sign-form" />
-		  <a id="start-button" class="btn btn-lg btn-primary btn-embossed start-button">Start your room</a>
+		  <p>People who want to sketchat you only connect to this URL.<br />Share this URL to someone you want to sketchat.</p> 
+		  <input id="url-text" type="text" class="form-control sign-form" value="<?php echo $url; ?>"/>
+		  <div id="qrcode" style="width: 128px; height: 128px; margin-top: 20px;"></div>
+		  <a href="<?php echo $url; ?>" id="start-button" class="btn btn-lg btn-primary btn-embossed start-button">Start to Sketchat</a>
 		</div>
 	      </div>
 	    </div>
-
 	  </div>
 	</div>
 
@@ -91,12 +95,12 @@ if($result1_num != 1 || $result2_num != 1)
     <footer>
       <nav role="navigation">
 	<div class="container">
-	  <p class="copyright">&copy; 2013 Sketchat &nbsp;All rights reserved.</p>
 	  <ul class="site-footer-links">
 	    <li class="footer-link"><a href="./about.html">About</a></li>
 	    <li class="footer-link"><a href="./about.html">Privacy</a></li>
 	    <li class="footer-link"><a href="./contact.html">Contact</a></li>
 	  </ul>
+	  <p class="copyright">&copy; 2013 Sketchat &nbsp;All rights reserved.</p>
 	</div>
       </nav>
     </footer>
@@ -104,19 +108,19 @@ if($result1_num != 1 || $result2_num != 1)
     <script src="./js/jquery.min.js"></script>
     <script src="./js/bootstrap.min.js"></script>
     <script src="./js/qrcodejs/qrcode.js"></script>
-    <script>
+<script type="text/javascript">
+var qrcode = new QRCode(document.getElementById("qrcode"), {
+  text: "http://jindo.dev.naver.com/collie",
+    width: 128,
+    height: 128,
+    colorDark : "#000000",
+    colorLight : "#ffffff",
+    correctLevel : QRCode.CorrectLevel.H
+});
+var width = $(".url-container").css("width").substr(0, $(".url-container").css("width").length - 2);
+$("#qrcode").css("margin-left", (width - 128) * 0.5 + "px");
+</script>
 
-      var width = window.innerWidth;
-      var height = window.innerHeight;
-      var url_parameter = location.search.substr(1);
-      var access_key = url_parameter.split("?");
-      $('#start-button').attr('href', './room.php?' + url_parameter);
-      $('#url-text').attr('value', 'http://wonderbee.no-ip.biz/sketchat/room.php?' + access_key[0]);
-
-      $('#welcome').css('width', width + 'px');
-      //$('#welcome').css('height', (height) + 'px');
-
-    </script>
   </body>
 </html>
 

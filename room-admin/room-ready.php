@@ -1,6 +1,7 @@
 <?php
 
 require_once("./db-config.php");
+session_start();
 
 $room_name = $_GET['room-name'];
 $user_name = $_GET['user-name'];
@@ -16,22 +17,21 @@ if($room_name != NULL && $user_name != NULL) {
     //Step1: New an user
     $ip = get_client_ip();
     $device = $_SERVER['HTTP_USER_AGENT'];
-    mysql_query("INSERT INTO user SET id=$user_id, name='$user_name', ip='$ip', device='$device', room=$room_id, enter_time='$time'");
+    mysql_query("INSERT INTO user SET id=$user_id, name='$user_name', ip='$ip', device='$device', room=$room_id");
     //Step2: New a room
     $key = md5($room_name."-".$user_name."-".$time);
     $port = get_idle_port($room_id);
+    $url = "http://".$_SERVER['HTTP_HOST']."/sketchat/room.php?".$key;
     mysql_query("INSERT INTO room SET id=$room_id, name='$room_name', creater=$user_id, create_time='$time', access_key='$key', port=$port");
     //Redirect to the room
-    header("location: ../ready-creater.php?$key?$user_name");
+    $_SESSION['room-key'] = $key;
+    $_SESSION['user-name'] = $user_name;
+    header("location: ../ready-creater.php");
   }
-  else if($num == 1) {
+  else if($num == 1)
     echo "<script>alert('This room name is using now, Please rename an another name.'); location.href='../'</script>";
-  }
-  else {
-    //Unexpected Error
+  else
     header("location: ../");
-  }
-    
 }
 else
   header("location: ../");

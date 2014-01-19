@@ -22,6 +22,11 @@ body {
   background-color: #333;
   color: #FFF;
 }
+.navbar-brand img {
+  margin-top: -16px;
+  margin-bottom: -10px;
+}
+
 .menu-list {
   font-size: 14px;
 }
