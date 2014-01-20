@@ -344,7 +344,7 @@
 	  }
       }).data('gridster');
       var tmp = '<li><video id="localVideo"></video></li>';
-      if(window.innerWidth < 768) 
+      if(window.innerWidth < 767) 
 	gridster.add_widget(tmp, 1, 2, 1, 1);
       else
 	gridster.add_widget(tmp, 3, 4, 1, 1);

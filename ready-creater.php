@@ -110,7 +110,7 @@ else
     <script src="./js/qrcodejs/qrcode.js"></script>
 <script type="text/javascript">
 var qrcode = new QRCode(document.getElementById("qrcode"), {
-  text: "http://jindo.dev.naver.com/collie",
+  text: "<?php echo $url; ?>",
     width: 128,
     height: 128,
     colorDark : "#000000",

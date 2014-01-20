@@ -38,7 +38,7 @@ var isMobile = {
 };
 
 var eventtype = isMobile.any() ? 'touchstart' : 'click';
-var paths = {}, color= 'black';
+var paths = {}, color= 'black', width = 4;
 var sessionId = Math.floor( ( Math.random() * 10000 ) + 1);
 // Connect to the nodeJs Server
 var socket = io.connect(port_url);
@@ -46,6 +46,7 @@ var socket = io.connect(port_url);
 var canvas = $('#paper')[0];
 var wx = window.innerWidth,
     wy = window.innerHeight;
+
 $('#red').on(eventtype, function(){color = 'red'});
 $('#green').on(eventtype, function(){color = 'green'});
 $('#yellow').on(eventtype, function(){color = 'yellow'});
@@ -54,6 +55,11 @@ $('#DarkBlue').on(eventtype, function(){color = '#00008B'});
 $('#DarkOrange').on(eventtype, function(){color = '#FF8C00'});
 $('#Violet').on(eventtype, function(){color = '#EE82EE'});
 $('#DarkMagenta').on(eventtype, function(){color = '#8B008B'});
+
+$('#thin').on(eventtype, function(){width = 2});
+$('#normal').on(eventtype, function(){width = 4});
+$('#fat').on(eventtype, function(){width = 6});
+
 canvas.width = wx;
 canvas.height = wy;
 // (1): Send a ping event with 
@@ -69,11 +75,8 @@ socket.on('pong', function (data) {
 function onMouseDown(event) {
   var x = event.point.x;
   var y = event.point.y;
-  console.log(event.point);
-  console.log(x);
-  console.log(y);
-  drawLine(x, y, color, sessionId, 0);
-  emitLine(x, y, color, sessionId, 0);
+  drawLine(x, y, color, width, sessionId, 0);
+  emitLine(x, y, color, width, sessionId, 0);
 
 }
 
@@ -81,21 +84,21 @@ function onMouseDrag(event) {
   var x = event.point.x;
   var y = event.point.y;
 
-  drawLine(x, y, color, sessionId, 1);
-  emitLine(x, y, color, sessionId, 1);
+  drawLine(x, y, color, width, sessionId, 1);
+  emitLine(x, y, color, width, sessionId, 1);
 }
 
 function onMouseUp(event) {
   var x = event.point.x;
   var y = event.point.y;
 
-  drawLine(x, y, color, sessionId, 2);
-  emitLine(x, y, color, sessionId, 2);
+  drawLine(x, y, color, width, sessionId, 2);
+  emitLine(x, y, color, width, sessionId, 2);
 
   console.log(project.activeLayer);
 }
 
-function drawLine( x, y, color, id, type) {
+function drawLine( x, y, color, width, id, type) {
   if(type == 0){
     paths[id] = new Path();
   }
@@ -103,12 +106,13 @@ function drawLine( x, y, color, id, type) {
     paths[id].smooth();
   }
   paths[id].strokeColor = color;
+  paths[id].strokeWidth = width;
   paths[id].add(new Point(x, y));
 
   view.draw();
 }
 
-function emitLine( x, y, color, id, type) {
+function emitLine( x, y, color, width, id, type) {
 
   x = x / window.innerWidth;
   y = y / window.innerHeight;
@@ -117,6 +121,7 @@ function emitLine( x, y, color, id, type) {
     x: x,
     y: y,
     color: color,
+    width: width,
     id: id,
     type: type
   };
@@ -130,7 +135,7 @@ function emitLine( x, y, color, id, type) {
 }
 
 socket.on( 'drawLine', function( data ) { 
-  drawLine( data.x * window.innerWidth, data.y * window.innerHeight, data.color, data.id, data.type);
+  drawLine( data.x * window.innerWidth, data.y * window.innerHeight, data.color, data.width, data.id, data.type);
 });
 
 $("#clean-button").on("click", function(e) {
