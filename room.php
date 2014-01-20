@@ -30,10 +30,7 @@ if($room_key != NULL) {
 }
 else
   header("location: ./");
-<<<<<<< HEAD
-=======
 
->>>>>>> fea3ab645589b477a242bbe97f9cd31e7693049d
 ?>
 
 <!DOCTYPE html>
