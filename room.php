@@ -1,5 +1,5 @@
 <?php
-
+/*
 require_once("./room-admin/db-config.php");
 
 $url = $_SERVER['REQUEST_URI'];
@@ -30,7 +30,7 @@ if($room_key != NULL) {
 }
 else
   header("location: ./");
-
+ */
 ?>
 
 <!DOCTYPE html>
@@ -77,9 +77,57 @@ else
 	    <li class="dropdown">
 	      <button href="#" class="dropdown-toggle btn btn-success" data-toggle="dropdown" style="margin-top: 8px; margin-right: 10px;">Change color <b class="caret"></b></button>
 	      <ul class="dropdown-menu">
-		<li><a href="#">Red</a></li>
-		<li><a href="#">Green</a></li>
-		<li><a href="#">Yelloe</a></li>
+		<li>
+		  <a id='red' href="#">
+		   <svg height='20' width='20'>
+		    <circle cx="10" cy="13" r="7" stroke='#999' stroke-width="1" fill="red" />
+		   </svg>
+		   Red
+		  </a>
+		</li>
+		<li><a id='green'href="#">
+		   <svg height='20' width='20'>
+		    <circle cx="10" cy="13" r="7" stroke='#999' stroke-width="1" fill="green" />
+		   </svg>
+
+		Green</a></li>
+		<li><a id='yellow'href="#">
+		   <svg height='20' width='20'>
+		    <circle cx="10" cy="13" r="7" stroke='#999' stroke-width="1" fill="yellow" />
+		   </svg>
+
+		Yellow</a></li>
+		<li><a id='black' href="#">
+		   <svg height='20' width='20'>
+		    <circle cx="10" cy="13" r="7" stroke='#999' stroke-width="1" fill="black" />
+		   </svg>
+
+		Black</a></li>
+	       <li><a id='DarkBlue' href="#">
+		   <svg height='20' width='20'>
+		    <circle cx="10" cy="13" r="7" stroke='#999' stroke-width="1" fill="DarkBlue" />
+		   </svg>
+
+		DarkBlue</a></li>
+		<li><a id='DarkOrange' href="#">
+		   <svg height='20' width='20'>
+		    <circle cx="10" cy="13" r="7" stroke='#999' stroke-width="1" fill="DarkOrange" />
+		   </svg>
+
+		DarkOrange</a></li>
+		<li><a id='Violet' href="#">
+		   <svg height='20' width='20'>
+		    <circle cx="10" cy="13" r="7" stroke='#999' stroke-width="1" fill="Violet" />
+		   </svg>
+
+		Violet</a></li>
+		<li><a id='DarkMagenta' href="#">
+		   <svg height='20' width='20'>
+		    <circle cx="10" cy="13" r="7" stroke='#999' stroke-width="1" fill="DarkMagenta" />
+		   </svg>
+
+		DarkMagenta</a></li>
+
 		<li class="divider"></li>
 		<li class="dropdown-header">Nav header</li>
 		<li><a href="#">Separated link</a></li>

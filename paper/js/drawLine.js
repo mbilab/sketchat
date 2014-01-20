@@ -28,7 +28,17 @@ $.ajax({
   }
 });
 
-var paths = {}, color;
+var isMobile = {
+  Android: function() { return navigator.userAgent.match(/Android/i); },
+    BlackBerry: function() { return navigator.userAgent.match(/BlackBerry/i); },
+    iOS: function() { return navigator.userAgent.match(/iPhone|iPad|iPod/i); },
+    Opera: function() { return navigator.userAgent.match(/Opera Mini/i); },
+    Windows: function() { return navigator.userAgent.match(/IEMobile/i); },
+    any: function() { return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows()); }
+};
+var eventtype = isMobile.any() ? 'touchstart' : 'click';
+console.log(eventtype);
+var paths = {}, color= 'black';
 var sessionId = Math.floor( ( Math.random() * 10000 ) + 1);
 // Connect to the nodeJs Server
 var socket = io.connect(port_url);
@@ -36,7 +46,14 @@ var socket = io.connect(port_url);
 var canvas = $('#paper')[0];
 var wx = window.innerWidth,
     wy = window.innerHeight;
-
+$('#red').on(eventtype, function(){color = 'red'});
+$('#green').on(eventtype, function(){color = 'green'});
+$('#yellow').on(eventtype, function(){color = 'yellow'});
+$('#black').on(eventtype, function(){color = 'black'});
+$('#DarkBlue').on(eventtype, function(){color = '#00008B'});
+$('#DarkOrange').on(eventtype, function(){color = '#FF8C00'});
+$('#Violet').on(eventtype, function(){color = '#EE82EE'});
+$('#DarkMagenta').on(eventtype, function(){color = '#8B008B'});
 canvas.width = wx;
 canvas.height = wy;
 // (1): Send a ping event with 
@@ -55,7 +72,6 @@ function onMouseDown(event) {
   console.log(event.point);
   console.log(x);
   console.log(y);
-  color = randomColor();
   drawLine(x, y, color, sessionId, 0);
   emitLine(x, y, color, sessionId, 0);
 
