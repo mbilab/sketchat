@@ -81,7 +81,7 @@ else
 		<div class="url-container col-md-6 col-md-offset-3">
 		  <p>People who want to sketchat you only connect to this URL.<br />Share this URL to someone you want to sketchat.</p> 
 		  <input id="url-text" type="text" class="form-control sign-form" value="<?php echo $url; ?>"/>
-		  <div id="qrcode" style="width: 128px; height: 128px; margin-top: 20px;"></div>
+		  <div id="qrcode" style="width: 168px; height: 168px; margin-top: 20px;"></div>
 		  <a href="<?php echo $url; ?>" id="start-button" class="btn btn-lg btn-primary btn-embossed start-button">Start to Sketchat</a>
 		</div>
 	      </div>
@@ -111,14 +111,14 @@ else
 <script type="text/javascript">
 var qrcode = new QRCode(document.getElementById("qrcode"), {
   text: "<?php echo $url; ?>",
-    width: 128,
-    height: 128,
+    width: 168,
+    height: 168,
     colorDark : "#000000",
     colorLight : "#ffffff",
     correctLevel : QRCode.CorrectLevel.H
 });
 var width = $(".url-container").css("width").substr(0, $(".url-container").css("width").length - 2);
-$("#qrcode").css("margin-left", (width - 128) * 0.5 + "px");
+$("#qrcode").css("margin-left", (width - 160) * 0.5 + "px");
 </script>
 
   </body>

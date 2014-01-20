@@ -30,7 +30,6 @@ if($room_key != NULL) {
 }
 else
   header("location: ./");
-*/
 ?>
 
 <!DOCTYPE html>
@@ -74,6 +73,7 @@ else
 	<!-- Collect the nav links, forms, and other content for toggling -->
 	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 	  <ul class="nav navbar-nav navbar-right">
+       	    <li id='eraser' type='button' class='btn btn-success' style='margin-top: 8px; margin-right: 10px;';>Eraser</li>
 	    <li class="dropdown">
 	      <button class="dropdown-toggle btn btn-default" data-toggle="dropdown" style="margin-top: 8px; margin-right: 10px;">Width: <b>Normal</b> <b class="caret"></b></button>
 	      <ul class="dropdown-menu">
@@ -95,7 +95,6 @@ else
 		<li><a id='DarkMagenta' href="#"><svg height='20' width='20'><circle cx="10" cy="13" r="7" stroke='#999' stroke-width="1" fill="DarkMagenta" /></svg> DarkMagenta</a></li> 
 	      </ul>
 	    </li>
-       	    <li id='eraser' type='button' class='btn btn-success' style='margin-top: 8px';>Eraser</li>
 	    <li id="clean-button" type="button" class="btn btn-success" style="margin-top: 8px;">Clean drawing board</li>
 	  </ul>
 	</div><!-- /.navbar-collapse -->
