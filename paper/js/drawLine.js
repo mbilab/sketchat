@@ -8,12 +8,12 @@ var user_name = ary[1];
 
 
 function randomColor() {
-  
+
   return {
     red: 0,
-    green: Math.random(),
-    blue: Math.random(),
-    //alpha: ( Math.random() * 0.25 ) + 0.05
+      green: Math.random(),
+      blue: Math.random(),
+      //alpha: ( Math.random() * 0.25 ) + 0.05
   };
 
 }
@@ -30,14 +30,14 @@ $.ajax({
 
 var isMobile = {
   Android: function() { return navigator.userAgent.match(/Android/i); },
-    BlackBerry: function() { return navigator.userAgent.match(/BlackBerry/i); },
-    iOS: function() { return navigator.userAgent.match(/iPhone|iPad|iPod/i); },
-    Opera: function() { return navigator.userAgent.match(/Opera Mini/i); },
-    Windows: function() { return navigator.userAgent.match(/IEMobile/i); },
-    any: function() { return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows()); }
+  BlackBerry: function() { return navigator.userAgent.match(/BlackBerry/i); },
+  iOS: function() { return navigator.userAgent.match(/iPhone|iPad|iPod/i); },
+  Opera: function() { return navigator.userAgent.match(/Opera Mini/i); },
+  Windows: function() { return navigator.userAgent.match(/IEMobile/i); },
+  any: function() { return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows()); }
 };
+
 var eventtype = isMobile.any() ? 'touchstart' : 'click';
-console.log(eventtype);
 var paths = {}, color= 'black';
 var sessionId = Math.floor( ( Math.random() * 10000 ) + 1);
 // Connect to the nodeJs Server
@@ -64,7 +64,7 @@ socket.emit('ping', { some: 'data' } );
 // (4): When the browser recieves a pong event
 // console log a message and the events data
 socket.on('pong', function (data) {
-	console.log( 'socket: server said pong (4)', data );
+  console.log( 'socket: server said pong (4)', data );
 });
 function onMouseDown(event) {
   var x = event.point.x;
@@ -80,7 +80,7 @@ function onMouseDown(event) {
 function onMouseDrag(event) {
   var x = event.point.x;
   var y = event.point.y;
-  
+
   drawLine(x, y, color, sessionId, 1);
   emitLine(x, y, color, sessionId, 1);
 }
@@ -109,7 +109,7 @@ function drawLine( x, y, color, id, type) {
 }
 
 function emitLine( x, y, color, id, type) {
-  
+
   x = x / window.innerWidth;
   y = y / window.innerHeight;
   // An object to describe the circle's draw data
@@ -124,8 +124,8 @@ function emitLine( x, y, color, id, type) {
   // send a 'drawCircle' event with data and sessionId to the server
   socket.emit( 'drawLine', data, sessionId )
 
-  // Lets have a look at the data we're sending
-  console.log( data )
+    // Lets have a look at the data we're sending
+    console.log( data )
 
 }
 
@@ -134,7 +134,7 @@ socket.on( 'drawLine', function( data ) {
 });
 
 $("#clean-button").on("click", function(e) {
- project.activeLayer.removeChildren();
- view.draw();
- console.log('clear');
+  project.activeLayer.removeChildren();
+  view.draw();
+  console.log('clear');
 }); 
