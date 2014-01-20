@@ -52,3 +52,9 @@ hgroup>h3{
   height:22px;
   background:url('../node-drawing-game/assets/img/pointer.png') no-repeat -4px 0;
 }
+
+@media(max-width: 767px) {
+  .dropdown-toggle {
+    width: 100%;
+  }
+}

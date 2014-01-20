@@ -1,7 +1,7 @@
 <?php
 
 require_once("./room-admin/db-config.php");
-
+/*
 $url = $_SERVER['REQUEST_URI'];
 $array = explode("?", $url, 2);
 $room_key = $array[1];
@@ -30,7 +30,7 @@ if($room_key != NULL) {
 }
 else
   header("location: ./");
-
+ */
 ?>
 
 <!DOCTYPE html>
@@ -75,7 +75,7 @@ else
 	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 	  <ul class="nav navbar-nav navbar-right">
 	    <li class="dropdown">
-	      <button href="#" class="dropdown-toggle btn btn-success" data-toggle="dropdown" style="margin-top: 8px; margin-right: 10px;">Change color <b class="caret"></b></button>
+	      <button class="dropdown-toggle btn btn-success" data-toggle="dropdown" style="margin-top: 8px; margin-right: 10px;">Change color <b class="caret"></b></button>
 	      <ul class="dropdown-menu">
 		<li><a id='red' href="#"><svg height='20' width='20'><circle cx="10" cy="13" r="7" stroke='#999' stroke-width="1" fill="red" /></svg> Red </a></li>
 		<li><a id='green' href="#"><svg height='20' width='20'><circle cx="10" cy="13" r="7" stroke='#999' stroke-width="1" fill="green" /></svg> Green</a></li>
