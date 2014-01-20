@@ -335,6 +335,20 @@
       console.log("this=");
       console.log(this);
 
+      var gridster = $(".gridster ul").gridster({
+	widget_base_dimensions: [100, 55],
+	  widget_margins: [5, 5],
+	  helper: 'clone',
+	  resize: {
+	    enabled: true
+	  }
+      }).data('gridster');
+      var tmp = '<li><video id="localVideo"></video></li>';
+      if(window.innerWidth < 768) 
+	gridster.add_widget(tmp, 1, 2, 1, 1);
+      else
+	gridster.add_widget(tmp, 3, 4, 1, 1);
+
       var el = this.getEl(this.config.localVideoEl);
       if (el && el.tagName === 'VIDEO') {
 	return el;

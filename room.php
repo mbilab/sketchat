@@ -96,7 +96,7 @@ else
 
     <div class="gridster ready" id="video-conference">
       <ul id="remotes">
-	<li data-row="1" data-col="1" data-sizex="3" data-sizey="4" class="gs-w"><video id="localVideo"></video></li>
+	<!--li data-row="1" data-col="1" data-sizex="3" data-sizey="4" class="gs-w"><video id="localVideo"></video></li-->
       </ul>
     </div>
 
