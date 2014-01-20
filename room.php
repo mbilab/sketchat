@@ -143,10 +143,16 @@ var gridster;
 var width = window.innerWidth;
 var height = window.innerHeight;
 
-//Set block size
-$("#sketch-board").css("height", (height) + "px");
-$("#sketch-board").css("width", (width) + "px");
-$(".gridster ul").css("width", (width) + "px");
+setInterval(function() { 
+  width = window.innerWidth;
+  height = window.innerHeight; 
+  //Set block size
+  $("#sketch-board").css("height", (height) + "px");
+  $("#sketch-board").css("width", (width) + "px");
+  $(".gridster ul").css("width", (width) + "px");
+
+}, 2000);
+
 //$("#sketch-board").css("top", "56px");
 
 window.onbeforeunload = function() {

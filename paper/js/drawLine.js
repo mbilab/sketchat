@@ -62,6 +62,7 @@ $('#fat').on(eventtype, function(){width = 6});
 
 canvas.width = wx;
 canvas.height = wy;
+
 // (1): Send a ping event with 
 // some data to the server
 console.log( "socket: browser says ping (1)" )

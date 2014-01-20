@@ -37,7 +37,10 @@
 }
 
 @media(max-width: 767px) {
+  .cover {
+  }
   .cover-box {
+    margin-top: -20px;
     padding: 0px 40px;
   }
   .cover-box h1 {
