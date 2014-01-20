@@ -2,7 +2,6 @@
 
 require_once("./room-admin/db-config.php");
 
-/*
 $url = $_SERVER['REQUEST_URI'];
 $array = explode("?", $url, 2);
 $room_key = $array[1];
@@ -31,7 +30,6 @@ if($room_key != NULL) {
 }
 else
   header("location: ./");
- */
 
 ?>
 
