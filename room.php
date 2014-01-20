@@ -30,7 +30,7 @@ if($room_key != NULL) {
 }
 else
   header("location: ./");
-*/
+
 ?>
 
 <!DOCTYPE html>
@@ -75,11 +75,11 @@ else
 	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 	  <ul class="nav navbar-nav navbar-right">
 	    <li class="dropdown">
-	      <button class="dropdown-toggle btn btn-default" data-toggle="dropdown" style="margin-top: 8px; margin-right: 10px;">Width: <b>Normal</b> <b class="caret"></b></button>
+	      <button id='choose-width' class="dropdown-toggle btn btn-default" data-toggle="dropdown" style="margin-top: 8px; margin-right: 10px;">Width: <b>Normal</b> <b class="caret"></b></button>
 	      <ul class="dropdown-menu">
 		<li><a id='thin' href="#"><svg height='20' width='20'><circle cx="10" cy="15" r="1" stroke='#999' stroke-width="1" fill="black" /></svg> Thin </a></li>
 		<li><a id='normal' href="#"><svg height='20' width='20'><circle cx="10" cy="15" r="3" stroke='#999' stroke-width="1" fill="black" /></svg> Normal</a></li>
-		<li><a id='fat' href="#"><svg height='20' width='20'><circle cx="10" cy="14" r="5" stroke='#999' stroke-width="1" fill="black" /></svg> Fat</a></li>
+		<li><a id='thick' href="#"><svg height='20' width='20'><circle cx="10" cy="14" r="5" stroke='#999' stroke-width="1" fill="black" /></svg> Thick</a></li>
 	      </ul>
 	    </li>
 	    <li class="dropdown">
