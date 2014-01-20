@@ -2,6 +2,7 @@
 
 require_once("./room-admin/db-config.php");
 
+/*
 $url = $_SERVER['REQUEST_URI'];
 $array = explode("?", $url, 2);
 $room_key = $array[1];
@@ -30,6 +31,7 @@ if($room_key != NULL) {
 }
 else
   header("location: ./");
+ */
 
 ?>
 
@@ -73,11 +75,20 @@ else
 	</div>
 	<!-- Collect the nav links, forms, and other content for toggling -->
 	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-          <ul class="nav navbar-nav">
-	    <button id="clean-button" type="button" class="btn btn-success" style="margin-top: 8px;">Share Link</button>
-	  </ul>
 	  <ul class="nav navbar-nav navbar-right">
-	    <button id="clean-button" type="button" class="btn btn-success" style="margin-top: 8px;">Clean drawing board</button>
+	    <li class="dropdown">
+	      <button href="#" class="dropdown-toggle btn btn-success" data-toggle="dropdown" style="margin-top: 8px; margin-right: 10px;">Change color <b class="caret"></b></button>
+	      <ul class="dropdown-menu">
+		<li><a href="#">Red</a></li>
+		<li><a href="#">Green</a></li>
+		<li><a href="#">Yelloe</a></li>
+		<li class="divider"></li>
+		<li class="dropdown-header">Nav header</li>
+		<li><a href="#">Separated link</a></li>
+		<li><a href="#">One more separated link</a></li>
+	      </ul>
+	    </li>
+	    <li id="clean-button" type="button" class="btn btn-success" style="margin-top: 8px;">Clean drawing board</li>
 	    <!--li><a href="./about.html" data-loc="about" class="menu-list">About</a></li>
 	  <li><a href="./feature.html" data-loc="feature" class="menu-list">Feature</a></li-->
 	  </ul>
