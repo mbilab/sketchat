@@ -55,7 +55,7 @@ $('#DarkBlue').on(eventtype, function(){color = '#00008B'; $('#svg_circle').attr
 $('#DarkOrange').on(eventtype, function(){color = '#FF8C00'; $('#svg_circle').attr('fill', color);});
 $('#Violet').on(eventtype, function(){color = '#EE82EE'; $('#svg_circle').attr('fill', color);});
 $('#DarkMagenta').on(eventtype, function(){color = '#8B008B'; $('#svg_circle').attr('fill', color);});
-
+$('#eraser').on(eventtype, function(){color='white'; width = 15;});
 $('#thin').on(eventtype, function(){width = 2;});
 $('#normal').on(eventtype, function(){width = 4;});
 $('#fat').on(eventtype, function(){width = 6;});
