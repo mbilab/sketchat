@@ -400,7 +400,11 @@
 	x_position = count * 3;
 
       }
-      gridster.add_widget(tmp, 3, 4, x_position, y_position);
+      if(window.innerWidth < 767) 
+	gridster.add_widget(tmp, 1, 2, x_position, y_position);
+      else
+        gridster.add_widget(tmp, 3, 4, x_position, y_position);
+
       //return this.getEl(this.config.remoteVideosEl);
       return this.getEl(time);
     };
