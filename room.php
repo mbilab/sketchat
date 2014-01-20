@@ -83,7 +83,7 @@ else
 	      </ul>
 	    </li>
 	    <li class="dropdown">
-	      <button class="dropdown-toggle btn btn-default" data-toggle="dropdown" style="margin-top: 8px; margin-right: 10px;">Color <svg height='14' width='14'><circle cx="5" cy="9" r="5" stroke='#999' stroke-width="1" fill="black" /></svg> <b class="caret"></b></button>
+	      <button class="dropdown-toggle btn btn-default" data-toggle="dropdown" style="margin-top: 8px; margin-right: 10px;">Color <svg height='14' width='14'><circle id='svg_circle' cx="5" cy="9" r="5" stroke='#999' stroke-width="1" fill="black" /></svg> <b class="caret"></b></button>
 	      <ul class="dropdown-menu">
 		<li><a id='red' href="#"><svg height='20' width='20'><circle cx="10" cy="13" r="7" stroke='#999' stroke-width="1" fill="red" /></svg> Red </a></li>
 		<li><a id='green' href="#"><svg height='20' width='20'><circle cx="10" cy="13" r="7" stroke='#999' stroke-width="1" fill="green" /></svg> Green</a></li>

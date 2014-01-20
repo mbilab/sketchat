@@ -47,18 +47,18 @@ var canvas = $('#paper')[0];
 var wx = window.innerWidth,
     wy = window.innerHeight;
 
-$('#red').on(eventtype, function(){color = 'red'});
-$('#green').on(eventtype, function(){color = 'green'});
-$('#yellow').on(eventtype, function(){color = 'yellow'});
-$('#black').on(eventtype, function(){color = 'black'});
-$('#DarkBlue').on(eventtype, function(){color = '#00008B'});
-$('#DarkOrange').on(eventtype, function(){color = '#FF8C00'});
-$('#Violet').on(eventtype, function(){color = '#EE82EE'});
-$('#DarkMagenta').on(eventtype, function(){color = '#8B008B'});
+$('#red').on(eventtype, function(){color = 'red'; $('#svg_circle').attr('fill', color);});
+$('#green').on(eventtype, function(){color = 'green'; $('#svg_circle').attr('fill', color);});
+$('#yellow').on(eventtype, function(){color = 'yellow'; $('#svg_circle').attr('fill', color);});
+$('#black').on(eventtype, function(){color = 'black'; $('#svg_circle').attr('fill', color);});
+$('#DarkBlue').on(eventtype, function(){color = '#00008B'; $('#svg_circle').attr('fill', color);});
+$('#DarkOrange').on(eventtype, function(){color = '#FF8C00'; $('#svg_circle').attr('fill', color);});
+$('#Violet').on(eventtype, function(){color = '#EE82EE'; $('#svg_circle').attr('fill', color);});
+$('#DarkMagenta').on(eventtype, function(){color = '#8B008B'; $('#svg_circle').attr('fill', color);});
 
-$('#thin').on(eventtype, function(){width = 2});
-$('#normal').on(eventtype, function(){width = 4});
-$('#fat').on(eventtype, function(){width = 6});
+$('#thin').on(eventtype, function(){width = 2;});
+$('#normal').on(eventtype, function(){width = 4;});
+$('#fat').on(eventtype, function(){width = 6;});
 
 canvas.width = wx;
 canvas.height = wy;
