@@ -55,10 +55,28 @@ $('#DarkBlue').on(eventtype, function(){color = '#00008B'; $('#svg_circle').attr
 $('#DarkOrange').on(eventtype, function(){color = '#FF8C00'; $('#svg_circle').attr('fill', color);});
 $('#Violet').on(eventtype, function(){color = '#EE82EE'; $('#svg_circle').attr('fill', color);});
 $('#DarkMagenta').on(eventtype, function(){color = '#8B008B'; $('#svg_circle').attr('fill', color);});
-$('#eraser').on(eventtype, function(){color='white'; width = 15;});
 $('#thin').on(eventtype, function(){width = 2; $('#choose-width').html('Width: <b>Thin</b> <b class="caret"></b>');});
 $('#normal').on(eventtype, function(){width = 4; $('#choose-width').html('Width: <b>Normal</b> <b class="caret"></b>');});
 $('#thick').on(eventtype, function(){width = 6; $('#choose-width').html('Width: <b>Thick</b> <b class="caret"></b>');});
+
+var origin_color = color, oneraser = 0, origin_width = width;
+$('#eraser').on(eventtype, function(){
+  if(!oneraser){
+    origin_color = color;
+    color = 'white';
+    width = 15;
+    oneraser = 1;
+    $('#color-picker').addClass('disabled');
+    $('#eraser').removeClass('btn-default').addClass('btn-success');
+  }else{
+    color = origin_color;
+    width = origin_width;
+    oneraser = 0;
+    $('#color-picker').removeClass('disabled');
+    $('#eraser').removeClass('btn-success').addClass('btn-default');
+  }
+});
+
 
 canvas.width = wx;
 canvas.height = wy;
