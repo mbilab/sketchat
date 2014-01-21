@@ -47,6 +47,10 @@
     text-align: left;
     font-size: 48px;
   }
+  iframe {
+    width: 240px;
+    height: 180px;
+  }
 }
 
 
@@ -75,4 +79,11 @@
   padding-top: 50px;
 }
 
+#demo-pic { 
+  width: 100%; 
+  border-top-left-radius: 10px; 
+  border-top-right-radius: 10px; 
+  border: 1px solid #DDD; 
+  margin-bottom: -11px;
+}
 

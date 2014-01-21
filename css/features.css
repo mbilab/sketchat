@@ -1,6 +1,19 @@
 #free {
   padding-top: 100px;
+  padding-bottom: 50px;
+}
+#secure {
+  padding-top: 100px;
+  padding-bottom: 50px;
 }
 .paper-back {
-  background: url('../node-drawing-game/assets/img/bg.png') repeat #e4e4e4;
+  background: url('../img/bg.png') repeat #e4e4e4;
+}
+
+.showcase-item-member img{
+  width: 100%; 
+  border-top-left-radius: 10px; 
+  border-top-right-radius: 10px; 
+  border: 1px solid #DDD; 
+  margin-bottom: -31px;
 }

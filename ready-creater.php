@@ -118,7 +118,7 @@ var qrcode = new QRCode(document.getElementById("qrcode"), {
     correctLevel : QRCode.CorrectLevel.H
 });
 var width = $(".url-container").css("width").substr(0, $(".url-container").css("width").length - 2);
-$("#qrcode").css("margin-left", (width - 160) * 0.5 + "px");
+$("#qrcode").css("margin-left", (width - 167) * 0.5 + "px");
 </script>
 
   </body>
