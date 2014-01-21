@@ -19,7 +19,7 @@ if($room_key != NULL && $user_name != NULL) {
     $user_id = get_table_row_num('user') + 1;    
     $ip = get_client_ip();
     $device = $_SERVER['HTTP_USER_AGENT'];
-    mysql_query("INSERT INTO user SET id=$user_id, name='$user_name', ip='$ip', device='$device', room=$room_id");
+    mysql_query("INSERT INTO user SET id=$user_id, name='$user_name', ip='$ip', device='$device', room=$room_id, enter_time='$time'");
     $_SESSION['room-key'] = $room_key;
     $_SESSION['user-name'] = $user_name;
     header("location: ../room.php?$room_key");

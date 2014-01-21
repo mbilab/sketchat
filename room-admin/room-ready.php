@@ -17,7 +17,7 @@ if($room_name != NULL && $user_name != NULL) {
     //Step1: New an user
     $ip = get_client_ip();
     $device = $_SERVER['HTTP_USER_AGENT'];
-    mysql_query("INSERT INTO user SET id=$user_id, name='$user_name', ip='$ip', device='$device', room=$room_id");
+    mysql_query("INSERT INTO user SET id=$user_id, name='$user_name', ip='$ip', device='$device', room=$room_id, enter_time='$time'");
     //Step2: New a room
     $key = md5($room_name."-".$user_name."-".$time);
     $port = get_idle_port($room_id);
