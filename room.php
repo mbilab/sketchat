@@ -74,7 +74,7 @@ else
 	<!-- Collect the nav links, forms, and other content for toggling -->
 	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 	  <ul class="nav navbar-nav navbar-right">
-       	    <li id='eraser' type='button' class='btn btn-success' style='margin-top: 8px; margin-right: 10px;';>Eraser</li>
+       	    <li id='eraser' type='button' class='btn btn-default' style='margin-top: 8px; margin-right: 10px;';>Eraser</li>
 	    <li class="dropdown">
 	      <button id='choose-width' class="dropdown-toggle btn btn-default" data-toggle="dropdown" style="margin-top: 8px; margin-right: 10px;">Width: <b>Normal</b> <b class="caret"></b></button>
 	      <ul class="dropdown-menu">
@@ -84,7 +84,7 @@ else
 	      </ul>
 	    </li>
 	    <li class="dropdown">
-	      <button class="dropdown-toggle btn btn-default" data-toggle="dropdown" style="margin-top: 8px; margin-right: 10px;">Color <svg height='14' width='14'><circle id='svg_circle' cx="5" cy="9" r="5" stroke='#999' stroke-width="1" fill="black" /></svg> <b class="caret"></b></button>
+	      <button class="dropdown-toggle btn btn-default" id='color-picker' data-toggle="dropdown" style="margin-top: 8px; margin-right: 10px;">Color <svg height='14' width='14'><circle id='svg_circle' cx="5" cy="9" r="5" stroke='#999' stroke-width="1" fill="black" /></svg> <b class="caret"></b></button>
 	      <ul class="dropdown-menu">
 		<li><a id='red' href="#"><svg height='20' width='20'><circle cx="10" cy="13" r="7" stroke='#999' stroke-width="1" fill="red" /></svg> Red </a></li>
 		<li><a id='green' href="#"><svg height='20' width='20'><circle cx="10" cy="13" r="7" stroke='#999' stroke-width="1" fill="green" /></svg> Green</a></li>
