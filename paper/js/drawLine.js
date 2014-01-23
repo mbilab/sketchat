@@ -64,7 +64,6 @@ $('#eraser').on(eventtype, function(){
   if(!oneraser){
     origin_color = color;
     color = 'white';
-    width = 15;
     oneraser = 1;
     $('#color-picker').addClass('disabled');
     $('#eraser').removeClass('btn-default').addClass('btn-success');
