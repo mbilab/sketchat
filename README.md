@@ -1,8 +1,7 @@
 #Sketchat
 
-Hey guys, write anything that can help others to know the cool things that you found.
-
-Website Demo: [http://wonderbee.no-ip.biz/sketchat/](http://wonderbee.no-ip.biz/sketchat/)
+We sketch. We chat. [See our website](http://iwonder.tw/sketchat/)
+You can quickly hold an online video chat and have a sketching board to help your discussion more efficient. It's 100% free, no installation and no registration required, just sign up a room and enjoy it.
 
 #How to implement
 
@@ -83,22 +82,4 @@ Resonably require the socket.io node module, also need to install module node-st
 The source code has download into our repository, and the related socket setting has been done so it can run directly on our host. Command line to run.
 
 	node app.js
-
-
-#Reference
-
-Use jQuery to implement ajax
-
-	$.ajax({
-	  	url: "cgi.php?argument_key=" + argument_value,
-		type: 'GET',
-		dataType: 'text',
-		success: function(msg) {
-		  //return the result
-		},
-		beforeSend: function(msg) {
-		  //can make some loading effect here
-		}
-	});
-
 
