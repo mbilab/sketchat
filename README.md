@@ -1,6 +1,7 @@
 #Sketchat
 
-We sketch. We chat. [See our website](http://iwonder.tw/sketchat/)
+We sketch. We chat. See our [website](http://iwonder.tw/sketchat/).
+
 You can quickly hold an online video chat and have a sketching board to help your discussion more efficient. It's 100% free, no installation and no registration required, just sign up a room and enjoy it.
 
 #How to implement
