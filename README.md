@@ -84,3 +84,6 @@ The source code has download into our repository, and the related socket setting
 
 	node app.js
 
+## License
+
+MIT
