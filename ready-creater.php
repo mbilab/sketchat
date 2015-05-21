@@ -1,6 +1,7 @@
 <?php
 require_once("./room-admin/db-config.php");
 
+session_start();
 $room_key = $_SESSION['room-key'];
 $user_name = $_SESSION['user-name'];
 

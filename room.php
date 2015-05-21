@@ -2,6 +2,7 @@
 
 require_once("./room-admin/db-config.php");
 
+session_start();
 $url = $_SERVER['REQUEST_URI'];
 $array = explode("?", $url, 2);
 $room_key = $array[1];
@@ -18,8 +19,8 @@ if($room_key != NULL) {
       $result = mysql_query("SELECT * FROM user WHERE name='$user_name' AND room=$room_id");
       $num = mysql_num_rows($result);
       if($num != 1) {
-	$_SESSION['user-name'] = NULL;
-	header("location: ./ready-user.php?$room_key");
+        $_SESSION['user-name'] = NULL;
+        header("location: ./ready-user.php?$room_key");
       }
     }
     else
@@ -118,14 +119,15 @@ else
     <script src="./js/jquery.min.js"></script>
     <script src="./js/bootstrap.min.js"></script>
     <!--script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script-->
-    <script src="./simplewebrtc/socket.io.js"></script>
-    <script src="./simplewebrtc/simplewebrtc.bundle.js"></script>
+    <!--script src="./simplewebrtc/socket.io.js"></script-->
+    <!--script src="./simplewebrtc/simplewebrtc.bundle.js"></script-->
+    <script src="./simplewebrtc/latest.js"></script>
     <script src="./simplewebrtc/main.js"></script>
     <script src="./gridster/jquery.gridster.js"></script>
     <!--script src='./node-drawing-game/assets/js/script.js'></script-->
-    <script src="./paper/js/paper.js"></script>
+    <!--script src="./paper/js/paper.js"></script>
     <script type='text/paperscript' src='./paper/js/drawLine.js' canvas='paper'></script>
-    <script src="./paper/js/socket.io.js"></script>
+    <script src="./paper/js/socket.io.js"></script-->
 
 <script>
 

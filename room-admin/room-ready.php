@@ -11,18 +11,17 @@ if($room_name != NULL && $user_name != NULL) {
   $result = mysql_query("SELECT * FROM room WHERE name='$room_name' AND over_time is NULL");
   $num = mysql_num_rows($result);
   if($num == 0) {
-    $time = date("H-m-d H:i:s");
     $user_id = get_table_row_num('user') + 1;
     $room_id = get_table_row_num('room') + 1;
     //Step1: New an user
     $ip = get_client_ip();
     $device = $_SERVER['HTTP_USER_AGENT'];
-    mysql_query("INSERT INTO user SET id=$user_id, name='$user_name', ip='$ip', device='$device', room=$room_id, enter_time='$time'");
+    mysql_query("INSERT INTO user SET id=$user_id, name='$user_name', ip='$ip', device='$device', room=$room_id, enter_time=now()");
     //Step2: New a room
     $key = md5($room_name."-".$user_name."-".$time);
     $port = get_idle_port($room_id);
     $url = "http://".$_SERVER['HTTP_HOST']."/sketchat/room.php?".$key;
-    mysql_query("INSERT INTO room SET id=$room_id, name='$room_name', creater=$user_id, create_time='$time', access_key='$key', port=$port");
+    mysql_query("INSERT INTO room SET id=$room_id, name='$room_name', creater=$user_id, create_time=now(), access_key='$key', port=$port");
     //Redirect to the room
     $_SESSION['room-key'] = $key;
     $_SESSION['user-name'] = $user_name;
