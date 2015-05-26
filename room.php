@@ -106,7 +106,7 @@ else
 
     <div class="gridster ready" id="video-conference">
       <ul id="remotes">
-	<!--li data-row="1" data-col="1" data-sizex="3" data-sizey="4" class="gs-w"><video id="localVideo"></video></li-->
+	      <!--li data-row="1" data-col="1" data-sizex="3" data-sizey="4" class="gs-w"><video id="localVideo"></video></li-->
       </ul>
     </div>
 
@@ -118,7 +118,6 @@ else
 
     <script src="./js/jquery.min.js"></script>
     <script src="./js/bootstrap.min.js"></script>
-    <!--script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script-->
     <!--script src="./simplewebrtc/socket.io.js"></script-->
     <!--script src="./simplewebrtc/simplewebrtc.bundle.js"></script-->
     <script src="./simplewebrtc/latest.js"></script>
@@ -189,9 +188,7 @@ $(function(){
     widget_base_dimensions: [100, 55],
       widget_margins: [5, 5],
       helper: 'clone',
-      resize: {
-	enabled: true
-      }
+      resize: { enabled: true }
   }).data('gridster');
 
   $('.js-resize-random').on('click', function() {

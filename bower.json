@@ -1,0 +1,21 @@
+{
+  "name": "nckuopen",
+  "dependencies": {
+    "jquery": "~2.0.3",
+    "reset-css": "~2.0.20110126",
+    "semantic-ui": "~1.6.4",
+    "c3": "~0.2.4",
+    "jquery-touchswipe": "~1.6.8",
+    "jquery-ui": "~1.11.4",
+    "paper": "~0.9.22"
+  },
+  "overrides": {
+    "semantic-ui": {
+      "main": ["dist/semantic.min.css", "dist/semantic.min.js", "dist/themes"]
+    },
+    "c3": {
+      "main": ["c3.css", "c3.js"]
+    }
+  },
+  "version": "0.0.1"
+}

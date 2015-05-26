@@ -1,0 +1,26 @@
+doctype html
+block vars
+html
+  head
+    meta(charset='utf-8')
+    meta(name='viewport' content='width=device-width, initial-scale=1.0')
+    title Sketchat
+    link(rel='stylesheet' href='app.css')
+    link(rel='shortcut icon' href='res/favicon.ico')
+  body
+    .ui.menu.fixed.inverted.our-centered#header
+      a.item(href='./' style='font-size: 1.3rem') Sketchat
+      .left.menu
+        a.item#menu-btn
+          i.icon.align.justify.big
+      .right.menu
+        a.item#setting-btn
+          i.icon.setting.big
+    .main
+      block main
+
+    script(src='app.js')
+    if js
+      script(src='#{js}.js')
+
+//- vi:et:nowrap:sw=2:ts=2 

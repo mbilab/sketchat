@@ -1,0 +1,18 @@
+extends main.jade
+
+block main
+  .container#cover
+    .ui.grid
+      .ten.wide.column#intro-text
+        h1 We sketch. We chat.
+        h2 You can quickly hold an online video chat and have a sketching board to help your discussion more efficient. It's 100% free, no installation and no registration required, just sign up a room and enjoy it.
+      .six.wide.column#create-form
+        .ui.form
+          .field#room
+            input(type='text' placeholder='Room name')
+          .field#user
+            input(type='text' placeholder='User name')
+          .ui.submit.button.fluid.blue#create-btn Create a room
+
+block vars
+  - var js = 'index'
