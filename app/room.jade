@@ -5,11 +5,23 @@ html
     meta(name='viewport' content='width=device-width, initial-scale=1.0')
     title Sketchat
     link(rel='stylesheet' href='app.css')
-    link(rel='shortcut icon' href='res/favicon.ico')
   body
     #room
-      .video-container
-        video#local-video
+      canvas#drawpad
+      #remotes
+      video#local-video
+    .ui.modal.small#enter-name
+      .header Give your name
+      .content
+        .ui.form
+          .field#your-name
+            input(type='text' placeholder='Your name')
+          .ui.error.message
+            p This name has been used, please input another name.
+      .actions
+        .ui.button.red.deny Cancel
+        .ui.button.green.approve Submit
 
     script(src='app.js')
     script(src='room.js')
+    script(src='draw.js' type='text/paperscript' canvas='drawpad')

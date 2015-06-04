@@ -1,5 +1,5 @@
-var PORT_HEAD = 5000;
-var PORT_TAIL = 5020;
+var PORT_HEAD = 8880;
+var PORT_TAIL = 8890;
 
 for(var i = PORT_HEAD; i <= PORT_TAIL; i++) {
   open_drawing_port(i);
