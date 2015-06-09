@@ -5,17 +5,9 @@ paths = {}
 
 $ \#drawpad .attr \width, window.inner-width
 $ \#drawpad .attr \height, window.inner-height
-$ \#drawpad .attr \width, window.inner-width
-$ \#drawpad .attr \height, window.inner-height
 
 /*
-$.ajax do
-  url: \get-port
-  data: key: cookie.get \key
-  success: ->
-*/
-
-socket = io.connect "http://iwonder.tw:10000/"
+socket = io.connect "http://iwonder.tw:9998/"
 
 socket.emit \ping, some: \data
 
@@ -24,7 +16,7 @@ socket.on \pong, (data) ->
 
 socket.on \draw, (data) ->
   draw data.x * window.inner-width, data.y * window.inner-height, data.color, data.width, data.id, data.type
-
+*/
 
 !function on-mouse-down
   sid := (new Date!).get-time!

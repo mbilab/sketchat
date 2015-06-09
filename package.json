@@ -3,17 +3,11 @@
   "version": "0.0.1",
   "author": "Wonder Chang <iwonder.tw@gmail.com",
   "dependencies": {
-    "MD5": "^1.2.2",
     "colors": "^1.0.3",
-    "emailjs": "^0.3.16",
-    "imap": "^0.8.14",
     "mysql": "^2.6.2",
-    "node-static": "^0.7.6",
-    "phantom": "^0.7.2",
-    "quoted-printable": "^1.0.0",
-    "sh": "0.0.3",
-    "socket.io": "0.9.16",
-    "utf8": "^2.1.0"
+    "node-uuid": "^1.4.3",
+    "sha256": "^0.2.0",
+    "socket.io": "^1.3.5"
   },
   "devDependencies": {
     "bower": "~1.4.1",

@@ -1,6 +1,8 @@
 cookie = do
   user: \sketchat-user
   key:  \sketchat-key
+  salt: \sketchat-salt
+  sid:  \sketchat-sid
 
   get: !->
     name = this[it] + '='
