@@ -27,11 +27,13 @@ html
       .actions
         .ui.button.red.deny Cancel
         .ui.button.green.approve Submit
-    .ui.modal.samll#msg-modal
+    .ui.modal.small#msg-modal
       .header Message
-      .content
+      .content.my-centered
       .actions
         .ui.button.green.approve Ok
+    .ui.page.dimmer#loading
+      .ui.text.loader Loading
 
     script(src='app.js')
     script(src='room.js' type='text/paperscript' canvas='drawpad')

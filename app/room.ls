@@ -3,6 +3,8 @@ $ \#drawpad .attr \width, window.inner-width
 $ \#drawpad .attr \height, window.inner-height
 paths = {}; color = \#000; width = 2;
 socket = io.connect "http://iwonder.tw:9998/"
+colors = <[#1f77b4 #ff7f0e #2ca02c #d62728 #9467bd #8c564b #e377c2 #7f7f7f #bcbd22 #17becf]>
+clients = []
 
 # Verify room
 $.ajax do
@@ -10,26 +12,22 @@ $.ajax do
   data: key: key
   success: !->
     switch it.res
-    | 0 =>
-      $ '#msg-modal content' .text it.msg
-      $ \#msg-modal .modal on-approve: ->
+    | 0, 1=>
+      $ '#msg-modal .content' .text it.msg
+      $ \#msg-modal .modal {-closable} .modal on-approve: ->
         location.href = (location.href / \room.html).0
-    | 1 =>
-      $ '#msg-modal content' .text it.msg
-      $ \#msg-modal .modal on-approve: ->
-        location.href = (location.href / \room.html).0
+      .modal \show
     | 2 =>
       add-user!
 
 # User leave
 window.add-event-listener \beforeunload, ->
-  $.ajax do
-    url: \user-leave
-    data: key: key, salt: salt, user: user
+  socket.emit \leave, {key: key, salt: salt, user: user, sid: sid}
 
 # Create user
 function add-user
-  $ \#enter-name .modal closable: false .modal do
+  $ '#enter-name input' .val ''
+  $ \#enter-name .modal {-closable} .modal do
     on-deny: ->
       location.href = (location.href.split \/room.html).0
     on-approve: ->
@@ -41,13 +39,14 @@ function add-user
         success: !->
           switch it.res
           | 0 =>
-            $ '#msg-modal content' .text it.msg
-            $ \#msg-modal .modal on-approve: ->
+            $ '#msg-modal .content' .text it.msg
+            $ \#msg-modal .modal {-closable} .modal on-approve: ->
               location.href = (location.href / \room.html).0
+            .modal \show
           | 1 =>
-            $ '#msg-modal content' .text it.msg
-            $ \#msg-modal .modal on-approve: ->
-              location.href = (location.href / \room.html).0
+            $ '#msg-modal .content' .text it.msg
+            $ \#msg-modal .modal {-closable} .modal on-approve: add-user
+              .modal \show
           | 2 =>
             # Assign cookie
             cookie.set \key , key  := it.key
@@ -62,6 +61,10 @@ function add-user
 
             socket.on \pong, ->
               cookie.set \sid, sid := it.sid
+              clients.push user
+              for u in it.clients
+                clients.push u.user
+                append-mouse u
 
             # Prepare video chat
             video-chat!
@@ -81,24 +84,17 @@ socket.on \draw, ->
 socket.on \msg,  ->
   show-msg it
 
-socket.on \new, ->
-  d3.select \#room .append \div
-    .style \position, \absolute
-    .style \left, \0px
-    .style \top, \-100px
-    .attr \id, it.user+'-mouse'
-    .text it.user
+socket.on \new,  ->
+  clients.push it.user
+  append-mouse it
+
+socket.on \leave, ->
+  d3.select '#'+it.user+'-mouse' .remove!
+  i = clients.index-of it.user
+  clients.splice i, 1
 
 socket.on \mouse, ->
-  if it.user
-    if ($ '#'+it.user+'-mouse').length is 0
-      d3.select \#room .append \div
-        .style \position, \absolute
-        .style \left, \0px
-        .style \top, \-100px
-        .attr \id, it.user+'-mouse'
-        .text it.user
-    else mouse-move it
+  mouse-move it
 
 !function emit-msg
   msg = $ \#msg-input .val!
@@ -149,6 +145,7 @@ socket.on \mouse, ->
     .classed 'msg-block', true
   div.append \span
     .classed 'msg-sender', true
+    .style \color, colors[clients.index-of it.user]
     .text it.user+' ('+((new Date it.time).to-string!/' ').4+'):'
   div.append \div
     .classed 'msg-content', true
@@ -157,11 +154,20 @@ socket.on \mouse, ->
     .classed 'ui divider', true
   $ \#msg-list .animate {scroll-top: $ \#msg-list .height! }, \fast
 
+!function append-mouse
+  d3.select \#room .append \div
+    .style \position, \absolute
+    .style \font-weight, \bold
+    .style \color, colors[clients.index-of it.user]
+    .style \left, \0px
+    .style \top, \-100px
+    .attr \id, it.user+'-mouse'
+    .text it.user
+
 !function mouse-move
   d3.select '#'+it.user+'-mouse'
     .style \left, (it.x * window.inner-width)+\px
     .style \top , (it.y * window.inner-height)+\px
-
 
 function video-chat
 
