@@ -52,7 +52,12 @@ module.exports = (io, config) !->
           sql = "UPDATE user SET session_id='#{socket.id}' WHERE user_id=#{rows.0.user_id}"
           connection.query sql, (err) ->
             if err then throw err
-            io.sockets.emit \pong, req: 1, sid: socket.id
+            socket.emit \pong, req: 1, sid: socket.id
+            socket.broadcast.in rows.0.access_key .emit \new, do
+              user: rows.0.name
+              sid: socket.id
+              salt: rows.0.salt
+              key: rows.0.access_key
 
     socket.on \draw, (data, key) ->
       socket.broadcast.in key .emit \draw, data
@@ -61,6 +66,5 @@ module.exports = (io, config) !->
       socket.broadcast.in key .emit \msg, data
 
     socket.on \mouse, (data, key) ->
-      console.log data
       socket.broadcast.in key .emit \mouse, data
 

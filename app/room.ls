@@ -1,7 +1,8 @@
-key  = location.search.substring 1; salt = null; user = null; sid = null; socket = null
+key  = location.search.substring 1; salt = null; user = null; sid = null
 $ \#drawpad .attr \width, window.inner-width
 $ \#drawpad .attr \height, window.inner-height
 paths = {}; color = \#000; width = 2;
+socket = io.connect "http://iwonder.tw:9998/"
 
 # Verify room
 $.ajax do
@@ -53,7 +54,6 @@ function add-user
             cookie.set \salt, salt := it.salt
             cookie.set \user, user := it.user
             # Create socket
-            socket := io.connect "http://iwonder.tw:9998/"
 
             socket.emit \ping, do
               key:  cookie.get \key
@@ -63,11 +63,6 @@ function add-user
             socket.on \pong, ->
               cookie.set \sid, sid := it.sid
 
-            socket.on \draw, ->
-              draw-line it
-
-            socket.on \msg,  ->
-              show-msg it
             # Prepare video chat
             video-chat!
 
@@ -80,6 +75,30 @@ $ \#msg-input .focus ->
   $ window .keydown !->
     if it.which is 13 then emit-msg!
 
+socket.on \draw, ->
+  draw-line it
+
+socket.on \msg,  ->
+  show-msg it
+
+socket.on \new, ->
+  d3.select \#room .append \div
+    .style \position, \absolute
+    .style \left, \0px
+    .style \top, \-100px
+    .attr \id, it.user+'-mouse'
+    .text it.user
+
+socket.on \mouse, ->
+  if it.user
+    if ($ '#'+it.user+'-mouse').length is 0
+      d3.select \#room .append \div
+        .style \position, \absolute
+        .style \left, \0px
+        .style \top, \-100px
+        .attr \id, it.user+'-mouse'
+        .text it.user
+    else mouse-move it
 
 !function emit-msg
   msg = $ \#msg-input .val!
@@ -88,26 +107,31 @@ $ \#msg-input .focus ->
   socket.emit \msg, data, key
   $ \#msg-input .val ''
 
-!function emit-draw
-  socket.emit \draw, it, key
-
 !function on-mouse-down
   x = it.point.x / window.inner-width
   y = it.point.y / window.inner-height
   draw-line x: x, y: y, color: color, width: width, type: 0, sid: sid
-  emit-draw x: x, y: y, color: color, width: width, type: 0, sid: sid
+  socket.emit \draw, {x: x, y: y, color: color, width: width, type: 0, sid: sid}, key
+  socket.emit \mouse, {x: x, y: y, user: user, sid: sid, salt: salt}, key
 
 !function on-mouse-drag
   x = it.point.x / window.inner-width
   y = it.point.y / window.inner-height
   draw-line x: x, y: y, color: color, width: width, type: 1, sid: sid
-  emit-draw x: x, y: y, color: color, width: width, type: 1, sid: sid
+  socket.emit \draw, {x: x, y: y, color: color, width: width, type: 1, sid: sid}, key
+  socket.emit \mouse, {x: x, y: y, user: user, sid: sid, salt: salt}, key
 
 !function on-mouse-up
   x = it.point.x / window.inner-width
   y = it.point.y / window.inner-height
   draw-line x: x, y: y, color: color, width: width, type: 2, sid: sid
-  emit-draw x: x, y: y, color: color, width: width, type: 2, sid: sid
+  socket.emit \draw, {x: x, y: y, color: color, width: width, type: 2, sid: sid}, key
+  socket.emit \mouse, {x: x, y: y, user: user, sid: sid, salt: salt}, key
+
+!function on-mouse-move
+  x = it.point.x / window.inner-width
+  y = it.point.y / window.inner-height
+  socket.emit \mouse, {x: x, y: y, user: user, sid: sid, salt: salt}, key
 
 !function draw-line
   switch it.type
@@ -132,6 +156,12 @@ $ \#msg-input .focus ->
   div.append \div
     .classed 'ui divider', true
   $ \#msg-list .animate {scroll-top: $ \#msg-list .height! }, \fast
+
+!function mouse-move
+  d3.select '#'+it.user+'-mouse'
+    .style \left, (it.x * window.inner-width)+\px
+    .style \top , (it.y * window.inner-height)+\px
+
 
 function video-chat
 
