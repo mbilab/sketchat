@@ -9,13 +9,36 @@ html
     #room
       canvas#drawpad
       #remotes
-      video#local-video
-      #msg
-        #msg-list
-          .ui.divider
-        .ui.fluid.input.action
-          input#msg-input(placeholder='messages...')
-          .ui.button#send-msg Send
+      #sidebar.ui.segment
+        #container
+          .ui.top.attached.tabular.menu
+            .item.active(data-tab='drawing')
+              i.icon.paint.brush
+            .item(data-tab='messages')
+              i.icon.comments
+            .item(data-tab='users')
+              i.icon.users
+          #draw.ui.bottom.attached.tab.segment.active(data-tab='drawing')
+            .ui.teal.icon.button#reset
+              i.icon.refresh
+            .ui.red.icon.button#undo
+              i.icon.undo
+            .ui.divider
+            input#color-picker
+            span#color-string  &nbsp&nbsp;&nbsp;#000000
+            .ui.divider
+            p Stroke width:
+              span#stroke-width-pixal  2px
+            input#stroke-width-bar(type='range' min='1' max='20' value='2')
+          #msg.ui.bottom.attached.tab.segment(data-tab='messages')
+            #msg-list
+            .ui.fluid.input#msg-input
+              input(placeholder='messages...')
+          #user.ui.bottom.attached.tab.segment(data-tab='users')
+            #user-list
+              user-list
+        #local-video-block
+          video#local-video
     .ui.modal.small#enter-name
       .header Give your name
       .content

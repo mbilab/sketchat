@@ -75,3 +75,9 @@ module.exports = (io, config) !->
     socket.on \mouse, (data, key) !->
       socket.broadcast.in key .emit \mouse, data
 
+    socket.on \reset, (data, key) !->
+      socket.broadcast.in key .emit \reset, data
+
+    socket.on \undo, (data, key) !->
+      socket.broadcast.in key .emit \undo, data
+

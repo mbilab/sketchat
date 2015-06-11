@@ -31,33 +31,37 @@
 
 #drawpad
   position absolute
-  width 100%
+  top 0
+  left 0
+  width 82%
   height 100%
-  
-#local-video
-  position absolute
-  right 1vh
-  bottom 1vh
-  width 24vh
-  height 18vh
 
-#msg
+#sidebar
   position absolute
-  top 1vh
-  right 1vh
-  width 24vh
-  height 76vh
+  top 0
+  right 0
+  width 18%
+  height 100%
   z-index 1000
+  margin 0
+
+#sidebar .item
+  cursor pointer
+
+#local-video-block
+  position absolute
+  left 0
+  bottom 0
+  width 100%
 
 #msg-list
-  position relative
-  height 100%
   width 100%
+  height 55vh
   background-color #FFF
   overflow-y: scroll
 
 #msg-list .msg-block
-  padding 0 1.5vh
+  padding 0 1vh
   width 100%
 
 #msg-list .msg-sender
@@ -69,8 +73,8 @@
   word-break normal
 
 .video-container
-  height 240px
-  width 360px
+  height 120px
+  width 180px
 
 video
   height 100%
@@ -81,3 +85,6 @@ video
 
 .none 
   display none
+
+input[type=range]
+  width 100%

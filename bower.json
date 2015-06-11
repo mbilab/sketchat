@@ -3,11 +3,12 @@
   "dependencies": {
     "jquery": "~2.0.3",
     "reset-css": "~2.0.20110126",
-    "semantic-ui": "~1.6.4",
+    "semantic-ui": "~1.12.3",
     "c3": "~0.2.4",
     "jquery-touchswipe": "~1.6.8",
     "jquery-ui": "~1.11.4",
-    "paper": "~0.9.22"
+    "paper": "~0.9.22",
+    "spectrum": "1.7.0"
   },
   "overrides": {
     "semantic-ui": {
