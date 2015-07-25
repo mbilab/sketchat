@@ -2,8 +2,9 @@ require! <[mysql sha256 gulp-util colors]>
 
 module.exports = (io, config) !->
 
-  connection = mysql.create-connection config.mysql
-  connection.connect!
+  pool = mysql.create-pool config.mysql
+  (err, connection) <-! pool.get-connection
+
   clients = {}
 
   set-interval ->
