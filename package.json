@@ -13,7 +13,7 @@
     "LiveScript": "~1.2.0",
     "bower": "~1.4.1",
     "connect-livereload": "~0.3.2",
-    "express": "~3.4.8",
+    "express": "~3.11.0",
     "gulp": "~3.5.5",
     "gulp-concat": "~2.1.7",
     "gulp-filter": "~0.3.1",
