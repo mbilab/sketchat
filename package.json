@@ -28,7 +28,7 @@
     "gulp-util": "~2.2.14",
     "main-bower-files": "~1.0.1",
     "nib": "~1.0.1",
-    "npm": "~6.4.1",
+    "npm": "~6.14.6",
     "streamqueue": "~0.0.4",
     "tiny-lr": "0.0.5"
   },
