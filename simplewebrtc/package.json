@@ -19,7 +19,7 @@
   },
   "devDependencies": {
     "browserify": "2.22.0",
-    "express": "3.x.x",
+    "express": "4.x.x",
     "request": "",
     "uglify-js": "3.4.9"
   },
